@@ -35,10 +35,52 @@
 
         //ejercicio 2
         var nombre = prompt("Dime tu nombre");
-        document.write(nombre);
         alert("Bienvenido " + nombre + "! ♡");
 
         //ejercicio 3
+        let continuar=true;
+        let operando1 = parseFloat(prompt("Introduce el primer número:"));
+        let operando2 = parseFloat(prompt("Introduce el segundo número:"));
+        let operacion = parseInt(prompt("¿Qué opción quieres? 1.Sumar 2.Restar 3.Multiplicar 4.Dividir 5.Cambiar operandos 6.Salir"));
+        let resultado;
+            
+        
+        while(continuar){
+            switch(operacion){
+                case 1:
+                    resultado = operando1 + operando2;
+                    alert("El resultado es " + resultado + "! ♡");
+                    break;
+                case 2:
+                    resultado = operando1 - operando2;
+                    alert("El resultado es " + resultado + "! ♡");
+                    break;
+                case 3:
+                    resultado = operando1 * operando2;
+                    alert("El resultado es " + resultado + "! ♡");
+                    break;
+                case 4:
+                    resultado = operando1 / operando2;
+                    alert("El resultado es " + resultado + "! ♡");
+                    break;
+                case 5:
+                    operando1 = parseInt(prompt("Introduce el primer número:"));
+                    operando2 = parseInt(prompt("Introduce el segundo número:"));
+                    break;
+                case 6:
+                    continuar=false;
+                    alert("Estás saliendo de la calculadora");
+                    break;
+                default:
+                    alert("No se puede calcular porque no elegiste una opción válida");
+                    alert(operacion);
+                    break;
+            }
+            if(continuar==true){
+                operacion = parseInt(prompt("¿Qué opción quieres? 1.Sumar 2.Restar 3.Multiplicar 4.Dividir 5.Cambiar operandos 6.Salir "));
+            }
+        }
+        
     </script>
 
     
