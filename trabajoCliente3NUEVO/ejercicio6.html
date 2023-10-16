@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 6</title>
+</head>
+<body>
+    <button id="boton1" value="red">Rojo</button>
+    <button id="boton2" value="blue">Azul</button>
+    <button id="boton3" value="green">Verde</button>
+    <button id="boton4" value="yellow">Amarillo</button>
+    <button id="boton5" value="purple">Morado</button>
+
+        <script>
+                // Función para cambiar el fondo al color seleccionado 
+                // El color es una variable para que cuando lo pongas en "CambiarColor("red")", 
+                //Haga que el nombre "red" se vaya "document.body.style.backgroundColor = color" y ponga ahi "red"
+                function cambiarColor(color) {
+                document.body.style.backgroundColor = color;
+                }
+
+                // Agregar un evento de clic a cada botón
+                document.getElementById("boton1").addEventListener("click", function() {
+                cambiarColor("red");
+                });
+
+                document.getElementById("boton2").addEventListener("click", function() {
+                cambiarColor("blue");
+                });
+
+                document.getElementById("boton3").addEventListener("click", function() {
+                cambiarColor("green");
+                });
+
+                document.getElementById("boton4").addEventListener("click", function() {
+                cambiarColor("yellow");
+                });
+
+                document.getElementById("boton5").addEventListener("click", function() {
+                cambiarColor("purple");
+                });
+        </script>
+</body>
+</html>

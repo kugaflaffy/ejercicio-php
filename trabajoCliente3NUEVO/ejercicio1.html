@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicio 1</title>
+</head>
+<body>
+    <a id="miEnlace" href="https://www.akiracomics.com/" target="_blank">Enlace a Akira</a>
+    <button id="botonMostrarInfo">Mostrar Información</button>
+    <button id="botonCambiarInfo">Cambiar Información</button>
+
+    <script>
+    // Función para mostrar la URL y el texto del enlace
+    function mostrarInformacion() {
+    var enlace = document.getElementById("miEnlace");
+    alert("URL: " + enlace.href + "\nTexto: " + enlace.textContent);
+    }
+
+    // Función para cambiar la URL y el texto del enlace
+    function cambiarInformacion() {
+    var enlace = document.getElementById("miEnlace");
+    enlace.href = "https://onepiece.fandom.com/es/wiki/One_Piece_Wiki";
+    enlace.textContent = "He cambiado";
+    }
+
+    // Agregar eventos a los botones
+    document.getElementById("botonMostrarInfo").addEventListener("click", mostrarInformacion);
+    document.getElementById("botonCambiarInfo").addEventListener("click", cambiarInformacion);
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio10</title>
+</head>
+<style>
+    .todo {
+        width: 300px;
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        font-size: 18px;
+        margin: 10px;
+    }
+    
+    #div1 {
+        background-color: pink;
+    }
+    
+    #div2 {
+        background-color: violet;
+    }
+    
+    #div3 {
+        background-color: plum;
+    }
+</style>
+<body>
+    <div id="div1" class="todo" onmouseover="cambiarColor('pink')" onmouseout="original()">miau</div>
+    <div id="div2" class="todo" onmouseover="cambiarColor('violet')" onmouseout="original()">uwu</div>
+    <div id="div3" class="todo" onmouseover="cambiarColor('plum')" onmouseout="original()">ola</div>
+    <script>
+        document.body.style.backgroundColor = 'lightgoldenrodyellow';
+        function cambiarColor(color) {
+            
+            if (color==='pink') {
+                document.body.style.backgroundColor = 'pink';
+            }else if(color==='violet'){
+                document.body.style.backgroundColor = 'violet';
+            }else if(color==='plum'){
+                document.body.style.backgroundColor = 'plum';
+            }
+        }  
+
+        function original(){
+            document.body.style.backgroundColor = 'lightgoldenrodyellow';
+        }
+    </script>
+</body>
+</html>

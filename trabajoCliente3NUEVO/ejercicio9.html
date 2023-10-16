@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 9</title>
+</head>
+<body>
+    <p id="primero" onclick="estilitoUno(); cambiarClase()">Hola!</p>
+    <p id="segundo" onclick="estilitoDos(); cambiarClase()">Adiós!</p>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () { //para hacer que los estilos estén cargados desde el principio
+            estilitoUno();
+        });
+        function cambiarClase() {
+            var uno = document.getElementById("primero");
+            var dos = document.getElementById("segundo");
+
+            if (uno.classList.contains('primero')) {
+                uno.classList.remove('primero');
+                uno.classList.add('segundo');
+                dos.classList.remove('segundo');
+                dos.classList.add('primero');
+            } else {
+                uno.classList.remove('segundo');
+                uno.classList.add('primero');
+                dos.classList.remove('primero');
+                dos.classList.add('segundo');
+            }
+        }
+
+        function estilitoUno() {
+            var uno = document.getElementById("primero");
+            uno.style.border = '2px solid pink';
+            uno.style.backgroundColor = 'yellow';
+
+            var dos = document.getElementById("segundo");
+            dos.style.border = '2px solid blue';
+            dos.style.backgroundColor = 'pink';
+        }
+
+        function estilitoDos() {
+            var uno = document.getElementById("primero");
+            uno.style.border = '2px solid blue';
+            uno.style.backgroundColor = 'pink';
+
+            var dos = document.getElementById("segundo");
+            dos.style.border = '2px solid pink';
+            dos.style.backgroundColor = 'yellow';
+        }
+    </script>
+</body>
+</html>

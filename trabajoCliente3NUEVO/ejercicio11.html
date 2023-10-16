@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 11</title>
+    <style>
+        .todo {
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 18px;
+            margin: 10px;
+        }
+        
+        #div1 {
+            background-color: pink;
+        }
+        
+        #div2 {
+            background-color: violet;
+            visibility: hidden;
+        }
+        
+        #div3 {
+            background-color: plum;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1" class="todo" onclick="div2(); div3()">uno</div>
+    <div id="div2" class="todo">dos</div>
+    <div id="div3" class="todo">tres</div>
+
+    <script>
+        function div2() {
+            document.getElementById("div2").style.visibility = "visible";
+        }
+
+        function div3() {
+            document.getElementById("div3").style.display = "block";
+        }
+    </script>
+</body>
+</html>

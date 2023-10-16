@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <div id='operacion'>0</div>
+    <div id='sumar' onclick="sumar()">
+        <button id="boton1" value="boton1">Sumar</button>
+    </div>
+    <div id='restar' onclick="restar()">
+        <button id="boton2" value="boton2">Restar</button>
+    </div>
+
+    <script>
+        let empezar=0;
+        function sumar(){
+            let operacion = document.getElementById('operacion').innerHTML = ++empezar;
+        }
+        function restar(){
+            let operacion = document.getElementById('operacion').innerHTML = --empezar;
+        }
+    </script>
+</body>
+</html>

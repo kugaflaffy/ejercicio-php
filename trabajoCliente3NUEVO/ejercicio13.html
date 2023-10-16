@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio13</title>
+</head>
+<body>
+    <button id="enseñar" onclick="operacion()">Mostrar</button>
+    <div id="spoiler" style="display:none;">
+        <p>miau miau miau</p>
+    </div>
+    <script>
+        var div=document.getElementById("spoiler");
+        var guardar= document.getElementById("enseñar");
+        function operacion(){
+            if(div.style.display==="none") {
+                div.style.display="block"; 
+                guardar.textContent="Ocultar";
+            }else{
+                div.style.display="none";
+                guardar.textContent="Mostrar";
+            }
+        }
+    </script>
+</body>
+</html>

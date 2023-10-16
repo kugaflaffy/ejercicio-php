@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 5</title>
+    <link rel="stylesheet" type="text/css" href="ejercicio5.css">
+</head>
+<body>
+    <p class="clase1" onclick="cambiarClase()">Hola!</p>
+    <p class="clase2" onclick="cambiarClase()">Adiós!</p>
+    
+    <script>
+    function cambiarClase() {
+        var uno = document.querySelector(".clase1"); //seleccionar el primer elemento de cada clase
+        var dos = document.querySelector(".clase2");
+        
+        if (uno.classList.contains('clase1')) {
+            uno.classList.remove('clase1');
+            uno.classList.add('clase2');
+            dos.classList.remove('clase2');
+            dos.classList.add('clase1');
+        } else {
+            uno.classList.remove('clase2');
+            uno.classList.add('clase1');
+            dos.classList.remove('clase1');
+            dos.classList.add('clase2');
+        }
+    }
+    </script>
+</body>
+</html>
