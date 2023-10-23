@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.menu-horizontal {
+    display: flex;
+}
+
+.menu-item {
+    position: relative;
+    margin-right: 20px;
+}
+
+.menu-title {
+    cursor: pointer;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    border: 1px solid #555;
+    padding: 10px;
+    z-index: 1;
+    top: 100%;
+}
+
+.menu-item:hover .submenu,
+.menu-item:focus-within .submenu {
+    display: block;
+}
+
+.menu-title:hover {
+    text-decoration: underline;
+}
+
+.submenu p {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+}

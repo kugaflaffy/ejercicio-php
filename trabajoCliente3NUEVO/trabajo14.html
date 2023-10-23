@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="trabajo14.css">
+    <title>Trabajo 14</title>
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-item">
+            <p class="menu-title">Inicio</p>
+            <div class="submenu">
+                <p>Portada</p>
+                <p>Acerca de mi</p>
+                <p>Mis fotos</p>
+            </div>
+        </div>
+        <div class="menu-item">
+            <p class="menu-title">Proyectos</p>
+            <div class="submenu">
+                <p>Web Apps</p>
+                <p>Mobile Apps</p>
+                <p>Juegos</p>
+            </div>
+        </div>
+        <div class="menu-item">
+            <p class="menu-title">Portfolio</p>
+            <div class="submenu">
+                <p>Páginas webs</p>
+                <p>Software</p>
+            </div>
+        </div>
+        <div class="menu-item">
+            <p class="menu-title">Contacto</p>
+        </div>
+    </div>
+    <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            var menuItems = document.querySelectorAll(".menu-item");
+
+            menuItems.forEach(function (item) {
+                var submenu = item.querySelector(".submenu");
+                
+                if (submenu) {
+                    item.addEventListener("click", function () {
+                        submenu.classList.toggle("activo");
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
