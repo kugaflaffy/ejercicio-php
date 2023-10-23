@@ -15,7 +15,7 @@
         <button type="submit">Calcular</button>
     </form>  
     <?php 
-        if(isset($_POST["calculito"])){
+        if(isset($_POST["calculito"])){ //ponemos condiciones usando muchos elseif para que nos funcione
             $calculito = $_POST["calculito"];
             if($calculito <50){
                 echo "los gastos de envío serán de 3,95€";
@@ -37,6 +37,7 @@
         <button type="submit">Calcular</button>
     </form>  
     <?php 
+    //lo mismo que el 1 pero en switch
         if(isset($_POST["operacioncita"])){
             $operacioncita = $_POST["operacioncita"];
             switch (true) {
@@ -73,6 +74,7 @@
         if(isset($_POST["numeritos"])){
             $numeritos = $_POST["numeritos"];
             $mayor = $numeritos[0];
+            //con este for podremos comparar los numeros y saber cual será mayor
             for ($i=0; $i<5 ; $i++) { 
                 if ($numeritos[$i]>$mayor){
                     $mayor = $numeritos[$i];
@@ -92,7 +94,7 @@
         if(isset($_POST["calculito"])){
             $calculito = $_POST["calculito"];
             $array = array(array(3,1), array(2,0));
-            
+            //recorremos los dos arrays con este foreach
             foreach ($array as $fila) {
                 foreach($fila as $elemento){
                     echo "$elemento";
@@ -114,8 +116,8 @@
             $array = array(array(1, 0), array(0, 1));
             $arraycito = array(array(0, 1), array(1, 0));
             
-            $resultado = array(); // Matriz para almacenar la suma
-            
+            $resultado = array(); // almacenar la suma
+            //con estos for sumamos por posición
             for ($i = 0; $i < count($array); $i++) {
                 $fila = array();
                 for ($j = 0; $j < count($array[$i]); $j++) {
@@ -124,13 +126,13 @@
                 $resultado[] = $fila;
             }
             
-            // Imprimir la matriz resultante
+            // imprimimos el resultado
             foreach ($resultado as $fila) {
                 foreach ($fila as $elemento) {
                     echo "$elemento ";
                 }
                 echo "<br>";
             }
-        }
+        } 
     ?>
 </body>   
