@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1</title>
+</head>
+<body>
+    <div>Tu array es:</div>
+    <div id="aqui"></div>
+    <div>La suma es:</div>
+    <div id="sumita"></div>
+    <script>
+        function guardadito(){
+            var result = [];
+            var guardar = "";
+            for (var i = 0; i < 6; i++) {
+                var x = prompt("di números para el array");
+                result[i] = x;
+            }
+            for (var i = 0; i < 6; i++) {
+                guardar += result[i] + " ";
+            }
+            document.getElementById("aqui").innerHTML = guardar;
+        }
+        guardadito();
+
+        function operacion(result){
+            var r = [];
+            var sumar = "";
+            for (var i = 0; i < result.length; i++) {
+                sumar += result[i] + " ";
+            }
+            document.getElementById("sumita").innerHTML = sumar;
+        }
+        operacion(result);
+    </script>
+    <h1>Suma Parcial de un Array</h1>
+    <button onclick="calcularSumaParcial()">Calcular Suma Parcial</button>
+    <p id="resultado"></p>
+  
+    <script>
+      function calcularSumaParcial() {
+        const numeros = prompt("Introduce los números separados por comas (ejemplo: 1,2,3,4,5,6):");
+        const numerosArray = numeros.split(",").map(Number);
+        const resultado = sumaParcial(numerosArray);
+        document.getElementById("resultado").innerHTML = "Resultado: " + resultado.join(", ");
+      }
+  
+      function sumaParcial(array) {
+        let resultado = [];
+        let suma = 0;
+  
+        for (let i = 0; i < array.length; i++) {
+          suma += array[i];
+          resultado.push(suma);
+        }
+  
+        return resultado;
+      }
+    </script>
+    
+</body>
+</html>
