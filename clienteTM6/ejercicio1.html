@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,54 +11,32 @@
     <div>La suma es:</div>
     <div id="sumita"></div>
     <script>
-        function guardadito(){
+        function guardarNumeros() {
             var result = [];
-            var guardar = "";
             for (var i = 0; i < 6; i++) {
-                var x = prompt("di números para el array");
-                result[i] = x;
+                var x = parseInt(prompt("Ingresa un número para el array"));
+                result.push(x);
             }
-            for (var i = 0; i < 6; i++) {
-                guardar += result[i] + " ";
-            }
-            document.getElementById("aqui").innerHTML = guardar;
+            mostrarArray(result);
+            calcularSumaParcial(result);
         }
-        guardadito();
+        guardarNumeros();
 
-        function operacion(result){
-            var r = [];
-            var sumar = "";
-            for (var i = 0; i < result.length; i++) {
-                sumar += result[i] + " ";
+        function mostrarArray(array) {
+            var arrayStr = array.join(", ");
+            document.getElementById("aqui").innerHTML = arrayStr;
+        }
+
+        function calcularSumaParcial(array) {
+            var sumaParcial = [];
+            var suma = 0;
+            for (var i = 0; i < array.length; i++) {
+                suma += array[i];
+                sumaParcial.push(suma);
             }
-            document.getElementById("sumita").innerHTML = sumar;
+            var sumaStr = sumaParcial.join(", ");
+            document.getElementById("sumita").innerHTML = sumaStr;
         }
-        operacion(result);
     </script>
-    <h1>Suma Parcial de un Array</h1>
-    <button onclick="calcularSumaParcial()">Calcular Suma Parcial</button>
-    <p id="resultado"></p>
-  
-    <script>
-      function calcularSumaParcial() {
-        const numeros = prompt("Introduce los números separados por comas (ejemplo: 1,2,3,4,5,6):");
-        const numerosArray = numeros.split(",").map(Number);
-        const resultado = sumaParcial(numerosArray);
-        document.getElementById("resultado").innerHTML = "Resultado: " + resultado.join(", ");
-      }
-  
-      function sumaParcial(array) {
-        let resultado = [];
-        let suma = 0;
-  
-        for (let i = 0; i < array.length; i++) {
-          suma += array[i];
-          resultado.push(suma);
-        }
-  
-        return resultado;
-      }
-    </script>
-    
 </body>
 </html>
