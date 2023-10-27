@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos</title>
+    <style>
+        h1{
+            font-family: 'Roboto Mono', monospace;
+            margin-top: 3%;
+            color: #cfcfcf;
+            font-weight: 100;
+            font-size: 300%;
+            text-align: center;
+        }
+        #container{
+            display: flex;
+            gap: 6rem;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: center;
+        }
+        div{
+            text-align: center;
+            font-family: 'Roboto Mono', monospace;
+            color: #cfcfcf;
+            
+        }
+        p{
+            background-color:black ;
+        }
+        #explicacion{
+            text-align: center;
+            font-family: 'Roboto Mono', monospace;
+            margin-bottom: 3%;
+            color: #cfcfcf;
+        }
+        #audio{
+            background-color: purple;
+        }
+        body{
+            background-image: url("https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/4/4a/Private_Room-Sister_Location.gif/revision/latest?cb=20161014235809&path-prefix=es");
+            background-size: cover;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay style="display: none" id="myAudio">
+        <source src="tintin.mp3" type="audio/mpeg">
+    </audio>
+    
+    <button onclick="playAudio()">
+        <img id="audio" src="https://i.pinimg.com/originals/7c/a2/e5/7ca2e59acafd5a84d0f53805f306c03d.png" alt="Reproducir" width="50" height="50">
+    </button>
+    <script>
+        function playAudio() {
+            var audio = document.getElementById("myAudio");
+            var playButton = document.querySelector("button");
+            audio.style.display = "block"; // Muestra la etiqueta de audio
+            audio.play(); // Inicia la reproducción
+            //playButton.style.display = "none"; // Oculta el botón de reproducción
+        }
+    </script>
+    <h1>Juegos</h1>
+    <p id="explicacion">Juegos de terror y supervivencia en los que los jugadores vigilan cámaras para evitar ataques de animatrónicos. <br>Cada juego presenta nuevas localizaciones y personajes, manteniendo una trama misteriosa y desafiante a lo largo de 5 noches. <br>Existen  también varios juegos fanmade basados en las historias que se  van descubriendo en los juegos oficiales.</p>
+    <div id="container">
+        
+        <div id="juego1">
+            <img src="https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/9/95/FiveNightsAtFreddys.png/revision/latest?cb=20150712042809&path-prefix=es" width="150" height="150"/>
+            <p><b>Five Nights at Freddy´s</b></p>
+            <p><b>2014 - </b> Los jugadores asumen el papel <br> de un guardia de seguridad nocturno<br> en una pizzería. Deben sobrevivir<br> cinco noches evitando ser atacados<br> por animatrónicos siniestros.</p>
+            <button onclick="juego1()">Comprar</button>
+            <button onclick="trailer1()">Trailer</button>
+            <script>
+                function juego1() {
+                    window.location.href = "https://store.steampowered.com/app/319510/Five_Nights_at_Freddys/?l=spanish";
+                } 
+                
+                function trailer1() {
+                    window.location.href = "https://youtu.be/Ws-yd9YPfdE?si=U6qhlvEJhuR0pEqU";
+                }
+            </script>
+        </div>    
+        <div id="juego2">
+            <img src="https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/e/ee/FNaF2_-_Portada.png/revision/latest?cb=20141117165616&path-prefix=es" width="150" height="150"/>
+            <p><b>Five Nights at Freddy´s 2</b></p>
+            <p><b>2014 - </b>  La secuela introduce una nueva<br> ubicación, con animatrónicos <br>rediseñados y más aterradores. <br>Lidia con problemas mecánicos y<br> una marioneta maligna</p>
+            <button onclick="juego2()">Comprar</button>
+            <button onclick="trailer2()">Trailer</button>
+            <script>
+                function juego2() {
+                    window.location.href = "https://store.steampowered.com/app/332800/Five_Nights_at_Freddys_2/?l=spanish";
+                }   
+                function trailer2() {
+                    window.location.href = "https://youtu.be/lVPONdZBh6s?si=n-kDvUFJf6SyIRLP";
+                }
+            </script>
+        </div>
+        <div id="juego3">
+            <img src="https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/4/4d/FNaF3_-_Portada.png/revision/latest?cb=20150126224614&path-prefix=es" width="150" height="150"/>
+            <p><b>Five Nights at Freddy´s 3</b></p>
+            <p><b>2015 - </b> Será  en un lugar abandonado,<br> nos enfrentamos a Springtrap: un<br> animatrónico poseído. Deben<br> descubrir secretos del pasado <br>y sobrevivir.</p>
+            <button onclick="juego3()">Comprar</button>
+            <button onclick="trailer3()">Trailer</button>
+            <script>
+                function juego3() {
+                    window.location.href = "https://store.steampowered.com/app/354140/Five_Nights_at_Freddys_3/?l=spanish";
+                }   
+                function trailer3() {
+                    window.location.href = "https://youtu.be/hdHlIy0W4uU?si=v-TjwPG01S7CRHAl";
+                }
+            </script>
+        </div>
+        <div id="juego4">
+            <img src="https://i.3djuegos.com/juegos/11993/five_nights_at_freddy__039_s_4/fotos/ficha/five_nights_at_freddy__039_s_4-5028797.jpg" width="150" height="150"/>
+            <p><b>Five Nights at Freddy´s 4</b></p>
+            <p><b>2015 - </b> Ocurre en la casa de un <br>niño, donde debe protegerse de<br> pesadillas animatrónicos, <br>mientras se enfrenta<br> a terrores nocturnos.</p>
+            <button onclick="juego4()">Comprar</button>
+            <button onclick="trailer4()">Trailer</button>
+            <script>
+                function juego4() {
+                    window.location.href = "https://store.steampowered.com/app/388090/Five_Nights_at_Freddys_4/?l=spanish";
+                }   
+                function trailer4() {
+                    window.location.href = "https://youtu.be/A-taWymx1WI?si=6e1cSUVygK1PxMR5";
+                }
+            </script>
+        </div>
+        <div id="juego5">
+            <img src="https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/8/83/FNaF_SL_-_Box_Art_%28Grande%29.jpeg/revision/latest?cb=20160802184441&path-prefix=es" width="150" height="150"/>
+            <p><b>Five Nights at Freddy´s: Sister Location</b></p>
+            <p><b>2016 - </b> Los jugadores son técnicos<br> de mantenimiento en una nueva<br> ubicación con animatrónicos más<br> sofisticados y espeluznantes.</p>
+            <button onclick="juego5()">Comprar</button>
+            <button onclick="trailer5()">Trailer</button>
+            <script>
+                function juego5() {
+                    window.location.href = "https://store.steampowered.com/app/506610/Five_Nights_at_Freddys_Sister_Location/?l=spanish";
+                }  
+                function trailer5() {
+                    window.location.href = "https://youtu.be/NR4ZeC4tPfE?si=b0OOfJ9C6pAUkHh7";
+                } 
+            </script>
+        </div>
+        <div id="juego6">
+            <img src="https://cdn.akamai.steamstatic.com/steam/apps/738060/header.jpg?t=1512422259" width="150" height="150"/>
+            <p><b>Simulador de la pizzería de Freddy Fazbear</b></p>
+            <p><b>2017 - </b> Juego de simulación donde<br> gestionan su propia pizzería <br>animatrónica. Deben gestionarla y<br> mantener a raya a los animatrónicos.</p>
+            <button onclick="juego6()">Comprar</button>
+            <button onclick="trailer6()">Trailer</button>
+            <script>
+                function juego6() {
+                    window.location.href = "https://store.steampowered.com/app/738060/Freddy_Fazbears_Pizzeria_Simulator/?l=spanish";
+                }   
+                function trailer6() {
+                    window.location.href = "https://youtu.be/4Dofhc5wmD0?si=1YW_Z9pkNZ7VlmvZ";
+                }
+            </script>
+        </div>
+        <div id="juego7">
+            <img src="https://image.api.playstation.com/vulcan/img/cfn/11307iZhB3UWLBaX2rVEvdP5yRwcVCL9lkQ1jMQ0yKye9itMa8RK28XRP-rns6f988rGn6z5Y_uyfIhgvumzd35WCZ0Z6kQQ.png" width="150" height="150"/>
+            <p><b>Five Nights at Freddy’s - Help Wanted</b></p>
+            <p><b>2019 - </b>  Juego de realidad virtual que<br> recopila experiencias aterradoras de<br> juegos anteriores. Se resuelven <br>acertijos y sobreviven a los ataques<br> de los animatrónicos mientras exploran.</p>
+            <button onclick="juego7()">Comprar</button>
+            <button onclick="trailer7()">Trailer</button>
+            <script>
+                function juego7() {
+                    window.location.href = "https://store.steampowered.com/app/732690/FIVE_NIGHTS_AT_FREDDYS_HELP_WANTED/";
+                }   
+                function trailer7() {
+                    window.location.href = "https://youtu.be/t5rcafhi-uY?si=LW6-woAUlLzc-GsI";
+                }
+            </script>
+        </div>
+        <div id="juego8">
+            <img src="https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/c/c7/FNaFAR_-_Icon1.png/revision/latest?cb=20190920230226&path-prefix=es" width="150" height="150"/>
+            <p><b>Five Nights at Freddy’s: Special Delivery</b></p>
+            <p><b>2019 - </b> Juego móvil de realidad aumentada <br>que trae a los animatrónicos al mundo <br>real. Deben defenderse de estos, <br>utilizando dispositivos móviles para <br>sobrevivir y recolectando elementos. </p>
+            <button onclick="juego8()">Comprar</button>
+            <button onclick="trailer8()">Trailer</button>
+            <script>
+                function juego8() {
+                    window.location.href = "https://five-nights-at-freddy-s-ar.uptodown.com/android";
+                }   
+                function trailer8() {
+                    window.location.href = "https://youtu.be/Af2PqVuzexg?si=e7uvV5cKC3pmuYWx";
+                }
+            </script>
+        </div>
+        <div id="juego9">
+            <img src="https://image.api.playstation.com/vulcan/img/rnd/202112/0804/2UTMvRFqn4SdaoxhtQnxchcn.png" width="150" height="150"/>
+            <p><b>Five Nights at Freddy’s: Security Breach</b></p>
+            <p><b>2021 - </b> Juego en primera persona que lleva a<br> los jugadores a una megapizzería con<br> gráficos mejorados. Deben explorar el<br> lugar y enfrentarse a nuevos animatrónicos<br> mientras tratan de sobrevivir.</p>
+            <button onclick="juego9()">Comprar</button>
+            <button onclick="trailer9()">Trailer</button>
+            <script>
+                function juego9() {
+                    window.location.href = "https://store.steampowered.com/app/747660/Five_Nights_at_Freddys_Security_Breach/?l=spanish";
+                }   
+                function trailer9() {
+                    window.location.href = "https://youtu.be/hzkit_4glmc?si=UGiStBhC9bAa4DIj";
+                }
+            </script>
+        </div>
+    </div>
+</body>
+</html>
