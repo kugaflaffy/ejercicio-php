@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio9</title>
+</head>
+<body>
+    <script>
+           var mesas = [];
+        function guardarNumeros() {
+            var cantidadMesa = prompt("Ingresa un número de mesas");
+  
+            for (var i = 0; i < cantidadMesa ; i++) {
+                var aleatorio = Math.floor(Math.random() * 5);
+                mesas.push(aleatorio);
+            }
+           console.log("las mesas disponibles son: " + mesas);
+        }
+     
+
+        function mostrarArray(array) {
+            var arrayStr = array.join(",");
+            document.getElementById("resultado").innerHTML = arrayStr;
+        }
+        function clientes() {
+            while(true){
+                var comensales = prompt("¿Cuántas personas sois?");
+                comensales = parseInt(comensales);
+
+                if(comensales > 4){
+                    prompt("Solo admitimos como máximo 4 en una mesa");
+                }
+
+                if (comensales < 0) {
+                    break;
+                }
+
+                var grupoCabeEnMesa = false;
+
+                // Comprobar si el grupo de clientes cabe en alguna mesa
+                for (var i = 0; i < mesas.length; i++) {
+                if (mesas[i] >= comensales) {
+                    grupoCabeEnMesa = true;
+                    break;
+                }
+                }
+
+                if (grupoCabeEnMesa) {
+                // Buscar una mesa disponible para el grupo
+                var mesaAsignada = -1;
+                for (var i = 0; i < mesas.length; i++) {
+                    if (mesas[i] >= comensales) {
+                    mesaAsignada = i;
+                    break;
+                    }
+                }
+
+                // Asignar la mesa al grupo
+                alert("Pueden sentarse en la mesa " + (mesaAsignada + 1));
+                mesas[mesaAsignada] -= comensales;
+                } else {
+                alert("Lo siento, no hay mesas disponibles para su grupo.");
+                }
+                console.log("la actualización de mesas es: " + mesas);
+            }
+        }
+        guardarNumeros();
+        clientes();
+         
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio4</title>
+</head>
+<body>
+    <div id="resultado"></div>
+    <script>
+        function funcioncita() {
+            const elemento1 = prompt("Introduce para el primer array").split(",");
+            const elemento2 = prompt("Introduce para el primer array").split(",");
+
+            // Función para convertir elementos a números si es posible
+            function conversionNum(element) {
+                const numero = parseFloat(element);
+                return isNaN(numero) ? element : numero; //Si la expresión es verdadera, se devuelve el valor antes de los dos puntos. Si es falsa, se devuelve el valor después de los dos puntos
+            }
+
+            // Convierte los elementos del usuario a números si es posible
+            const array1 = elemento1.map(conversionNum); //recorre cada elemento del array y aplica una función, generando un nuevo array con los resultados de la transformación
+            const array2 = elemento2.map(conversionNum);
+
+            // Combina ambos arrays en uno solo
+            const arraicitos = array1.concat(array2);
+
+            // para llevar un registro de la cantidad de veces que aparece cada elemento en el array
+            const contar = {};
+
+            // Recorre el array combinado para contar la ocurrencia de cada elemento
+            for (const elemento of arraicitos) {//of es para recorrer elementosen js
+                if (contar[elemento]) {
+                    contar[elemento]++;
+                } else {
+                    contar[elemento] = 1;
+                }
+            }
+
+            // Inicializa el resultado como un array vacío
+            const resultado = [];
+
+            // Recorre el array combinado nuevamente y agrega elementos que solo aparecen una vez al resultado
+            for (const elemento of arraicitos) {
+                if (contar[elemento] === 1) {
+                    resultado.push(elemento);
+                    contar[elemento] = 0; // Marca el elemento como procesado para evitar duplicados
+                }
+            }
+
+            return resultado;
+        }
+
+        const resultado = funcioncita();
+        document.getElementById("resultado").innerHTML = resultado.join(', ');
+    </script>
+</body>
+</html>

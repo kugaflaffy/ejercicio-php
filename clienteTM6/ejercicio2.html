@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <h1>Ejercicio 2</h1>
+    Here <input type="submit" name="boton" onclick="countBy()">
+    <div id="result"></div>
+    <script>
+
+        function countBy(){
+             const x = parseInt(prompt("Introduzca el primer número"));
+             const y = parseInt(prompt("Introduzca el segundo número"));
+
+            if(x < 0 || y < 0 ){
+                const arr = [];
+                console.log(arr);
+                document.getElementById("result").textContent = "Los números deben ser positivos.";
+            }else {
+               const multiples = [];
+               for (var i = 1;i <= y; i++){
+                    multiples.push(x * i);
+                    
+               }
+               document.getElementById("result").textContent = "Multiplos: " + multiples.join(", ");
+            }
+        }
+    </script>
+</body>
+</html>
