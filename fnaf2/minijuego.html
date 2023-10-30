@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juego de Cartas de Parejas</title>
+    <style>
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 10%;
+            height: 20%;
+            padding-bottom: 15%;
+            margin: 1%;
+            cursor: pointer;
+            background-color: purple;
+            background-size: cover;
+        }
+
+        .lost-image {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Juego de Cartas de Parejas</h1>
+    <div id="game-container" class="game-container">
+        <div id="start-container">
+            <button id="start-button">Iniciar Juego</button>
+        </div>
+    </div>
+    <p>Intentos: <span id="attempts">0</span></p>
+    <p>Vidas: <span id="lives">5</span></p>
+    <p>Tiempo Restante: <span id="timer">60</span> segundos</p>
+    <img id="lost-image" class="lost-image" src="susto.gif" alt="Has perdido">
+    <button id="play-again-button" style="display: none;">Jugar de nuevo</button>
+
+    <script>
+        const cards = ['f.jpg', 'fox.jpg', 'chicamiedo.jpg', 'toy.jpg', 'puppet.jpg', 'ballora.jpg',
+            'f.jpg', 'fox.jpg', 'chicamiedo.jpg', 'toy.jpg', 'puppet.jpg', 'ballora.jpg'];
+        let flippedCards = [];
+        let attempts = 0;
+        let lives = 5;
+        let timer = 60;
+        let lostImage = document.getElementById('lost-image');
+        let playAgainButton = document.getElementById('play-again-button');
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function updateGame() {
+            document.getElementById('attempts').textContent = attempts;
+            document.getElementById('lives').textContent = lives;
+            document.getElementById('timer').textContent = timer;
+        }
+
+        function checkForWin() {
+            const allCardsMatched = document.querySelectorAll('.card.hidden').length === 0;
+            if (allCardsMatched) {
+                alert('¡Has ganado!');
+                resetGame();
+            }
+        }
+
+        function checkForMatch() {
+            if (flippedCards.length === 2) {
+                attempts++;
+                updateGame();
+                const card1 = flippedCards[0];
+                const card2 = flippedCards[1];
+
+                if (cards[card1] === cards[card2]) {
+                    flippedCards = [];
+                    checkForWin();
+                } else {
+                    setTimeout(function () {
+                        document.getElementById(card1).style.backgroundImage = 'none';
+                        document.getElementById(card2).style.backgroundImage = 'none';
+                        flippedCards = [];
+                        lives--;
+                        updateGame();
+                        if (lives === 0) {
+                            lostImage.style.display = 'block';
+                            playAgainButton.style.display = 'block';
+                        }
+                    }, 1000);
+                }
+            }
+        }
+
+        function resetGame() {
+            cards.sort(() => Math.random() - 0.5);
+            flippedCards = [];
+            attempts = 0;
+            lives = 5;
+            timer = 60;
+            updateGame();
+            lostImage.style.display = 'none';
+            playAgainButton.style.display = 'none';
+
+            // Restablece el estado de las cartas
+            const cardElements = document.querySelectorAll('.card');
+            cardElements.forEach(function (card) {
+                card.style.backgroundImage = 'none';
+                card.classList.remove('hidden');
+            });
+
+            // Muestra el botón de inicio
+            startContainer.style.display = 'block';
+        }
+
+        function startTimer() {
+            const countdown = setInterval(function () {
+                timer--;
+                updateGame();
+
+                if (timer === 0) {
+                    clearInterval(countdown);
+                    lostImage.style.display = 'block';
+                    playAgainButton.style.display = 'block';
+                }
+            }, 1000);
+        }
+
+        shuffleArray(cards);
+        updateGame();
+
+        const gameContainer = document.getElementById('game-container');
+        for (let i = 0; i < 12; i++) {
+            const cardElement = document.createElement('div');
+            cardElement.className = 'card';
+            cardElement.id = i;
+            cardElement.onclick = function () {
+                if (flippedCards.length < 2 && !flippedCards.includes(i)) {
+                    cardElement.style.backgroundImage = `url(${cards[i]})`;
+                    flippedCards.push(i);
+                    cardElement.classList.add('hidden');
+                    checkForMatch();
+                }
+            };
+            gameContainer.appendChild(cardElement);
+        }
+
+        const startButton = document.getElementById('start-button');
+        const startContainer = document.getElementById('start-container');
+        startButton.addEventListener('click', function () {
+            resetGame();
+            shuffleArray(cards);
+            lostImage.style.display = 'none';
+            startContainer.style.display = 'none';
+            startTimer();
+        });
+    </script>
+</body>
+</html>
