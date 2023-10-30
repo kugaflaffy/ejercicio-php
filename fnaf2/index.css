@@ -1,0 +1,94 @@
+body{
+    background-image: url(./fondo-1.gif);
+    background-size: cover;
+}
+/*Intro*/
+.intro{
+    font-family: 'Roboto Mono', monospace;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    transition: 2;
+}
+
+.logo-header{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:#cfcfcf;
+}
+
+.logo{
+    position: relative;
+    display: inline-block;
+    bottom: -20px;
+    opacity: 0;
+}
+
+.logo.active {
+    bottom: 0;
+    opacity: 1;
+    transition: ease-in-out 0.5s;
+}
+
+.logo.fade{
+    bottom: 150px;
+    opacity: 0;
+    transition: ease-in-out 0.5s;
+}
+
+/*Menu Principal*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;600&display=swap');
+#titulo{
+    font-family: 'Roboto Mono', monospace;
+    margin-left: 16%;
+    margin-top: 13%;
+    color: #cfcfcf;
+    font-weight: 100;
+    font-size: 300%;
+}
+/*Sub-menu*/
+.menu, a{
+    font-size: x-large;
+    margin-left: 16%;
+    font-family: 'Roboto Mono', monospace;
+    color:#cfcfcf;
+    width: 5%;
+    padding: 1%;
+}
+.menu-item{
+    margin: 1%;
+    cursor: pointer;
+}
+.menu-title{
+    margin: 0;
+    padding: 1%;
+}
+.submenu{
+    display: none;
+    padding-left: 2%;
+}
+.submenu p{
+    margin: 0;
+    padding: 0.5%;
+    cursor: pointer;
+}
+.submenu.activo{
+    display: block;
+}
+.menu-title:hover {
+    background-color: #555;
+}
+/*Contenedor*/
+#container{
+    display: absolute;
+    gap: 6rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
