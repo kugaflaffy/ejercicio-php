@@ -32,24 +32,27 @@
     <h1>Juego de Cartas de Parejas</h1>
     <div id="game-container" class="game-container">
         <div id="start-container">
-            <button id="start-button">Iniciar Juego</button>
+            <button id="start-button" onclick="startGame()">Iniciar Juego</button>
         </div>
     </div>
     <p>Intentos: <span id="attempts">0</span></p>
     <p>Vidas: <span id="lives">5</span></p>
     <p>Tiempo Restante: <span id="timer">60</span> segundos</p>
     <img id="lost-image" class="lost-image" src="susto.gif" alt="Has perdido">
-    <button id="play-again-button" style="display: none;">Jugar de nuevo</button>
+    <button id="play-again-button" style="display: none;" onclick="resetGame()">Jugar de nuevo</button>
 
     <script>
-        const cards = ['f.jpg', 'fox.jpg', 'chicamiedo.jpg', 'toy.jpg', 'puppet.jpg', 'ballora.jpg',
-            'f.jpg', 'fox.jpg', 'chicamiedo.jpg', 'toy.jpg', 'puppet.jpg', 'ballora.jpg'];
+        const originalCards = ['f.jpg', 'fox.jpg', 'chicamiedo.jpg', 'toy.jpg', 'puppet.jpg', 'ballora.jpg'];
+        const allCards = [...originalCards, ...originalCards]; // Duplicar las cartas para hacer pares
         let flippedCards = [];
         let attempts = 0;
         let lives = 5;
         let timer = 60;
         let lostImage = document.getElementById('lost-image');
         let playAgainButton = document.getElementById('play-again-button');
+        let gameStarted = false;
+        let countdown;
+        let shuffledCards = [];
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
@@ -67,8 +70,9 @@
         function checkForWin() {
             const allCardsMatched = document.querySelectorAll('.card.hidden').length === 0;
             if (allCardsMatched) {
+                clearInterval(countdown); // Detener el temporizador
                 alert('¡Has ganado!');
-                resetGame();
+                resetGame(); // Reiniciar el juego
             }
         }
 
@@ -79,7 +83,7 @@
                 const card1 = flippedCards[0];
                 const card2 = flippedCards[1];
 
-                if (cards[card1] === cards[card2]) {
+                if (shuffledCards[card1] === shuffledCards[card2]) {
                     flippedCards = [];
                     checkForWin();
                 } else {
@@ -90,6 +94,7 @@
                         lives--;
                         updateGame();
                         if (lives === 0) {
+                            clearInterval(countdown); // Detener el temporizador
                             lostImage.style.display = 'block';
                             playAgainButton.style.display = 'block';
                         }
@@ -99,7 +104,8 @@
         }
 
         function resetGame() {
-            cards.sort(() => Math.random() - 0.5);
+            // Restablece el juego
+            clearInterval(countdown); // Detener el temporizador
             flippedCards = [];
             attempts = 0;
             lives = 5;
@@ -115,51 +121,50 @@
                 card.classList.remove('hidden');
             });
 
-            // Muestra el botón de inicio
-            startContainer.style.display = 'block';
+            gameStarted = false; // Para que el tiempo inicie nuevamente al hacer clic en "Iniciar Juego" otra vez
         }
 
         function startTimer() {
-            const countdown = setInterval(function () {
+            countdown = setInterval(function () {
                 timer--;
                 updateGame();
 
                 if (timer === 0) {
-                    clearInterval(countdown);
+                    clearInterval(countdown); // Detener el temporizador
                     lostImage.style.display = 'block';
                     playAgainButton.style.display = 'block';
                 }
             }, 1000);
         }
 
-        shuffleArray(cards);
-        updateGame();
+        function startGame() {
+            if (!gameStarted) {
+                shuffledCards = [...allCards];
+                shuffleArray(shuffledCards);
+                updateGame();
 
-        const gameContainer = document.getElementById('game-container');
-        for (let i = 0; i < 12; i++) {
-            const cardElement = document.createElement('div');
-            cardElement.className = 'card';
-            cardElement.id = i;
-            cardElement.onclick = function () {
-                if (flippedCards.length < 2 && !flippedCards.includes(i)) {
-                    cardElement.style.backgroundImage = `url(${cards[i]})`;
-                    flippedCards.push(i);
-                    cardElement.classList.add('hidden');
-                    checkForMatch();
+                const gameContainer = document.getElementById('game-container');
+                gameContainer.innerHTML = ''; // Limpiar el contenedor de juego
+
+                for (let i = 0; i < shuffledCards.length; i++) {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'card';
+                    cardElement.id = i;
+                    cardElement.onclick = function () {
+                        if (gameStarted && flippedCards.length < 2 && !flippedCards.includes(i)) {
+                            cardElement.style.backgroundImage = `url(${shuffledCards[i]})`;
+                            flippedCards.push(i);
+                            cardElement.classList.add('hidden');
+                            checkForMatch();
+                        }
+                    };
+                    gameContainer.appendChild(cardElement);
                 }
-            };
-            gameContainer.appendChild(cardElement);
-        }
 
-        const startButton = document.getElementById('start-button');
-        const startContainer = document.getElementById('start-container');
-        startButton.addEventListener('click', function () {
-            resetGame();
-            shuffleArray(cards);
-            lostImage.style.display = 'none';
-            startContainer.style.display = 'none';
-            startTimer();
-        });
+                gameStarted = true;
+                startTimer();
+            }
+        }
     </script>
 </body>
 </html>
