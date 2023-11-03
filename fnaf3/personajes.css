@@ -1,0 +1,153 @@
+*{
+   background-image: url(./susto2.gif);
+   background-size: cover;
+   background-attachment: fixed;
+}
+#tit{
+    font-family: 'Roboto Mono', monospace;
+    color: #cfcfcf;
+    text-align: center;
+    margin-top: 6%;
+}
+/*boton*/
+#personaje1{
+    background-color: transparent; /* Fondo transparente para el botón */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cambiar el cursor al pasar el mouse por encima */
+  display: flex; /* Mostrar elementos en línea uno al lado del otro */
+  align-items: center; /* Centrar verticalmente los elementos */
+  padding: 10px; /* Espacio interior del botón */
+}
+#personaje1 img{
+    margin-left: 4.5%;
+    width: 25%; /* Tamaño de la imagen */
+    height: 25%;
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+#personaje4{
+  background-color: transparent; /* Fondo transparente para el botón */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cambiar el cursor al pasar el mouse por encima */
+  display: flex; /* Mostrar elementos en línea uno al lado del otro */
+  align-items: center; /* Centrar verticalmente los elementos */
+  padding: 5px; /* Espacio interior del botón */
+}
+#personaje4 img{
+    width: 30%; /* Tamaño de la imagen */
+    height: 25%;
+    margin-right: 6px; /* Espacio entre la imagen y el texto */
+    margin-left: 3%;
+}
+#container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);/* Divide en 2 columnas con igual ancho */
+    gap: 20px; /* Espacio entre las columnas */
+    margin-top: 8%;
+    margin-left: 10%;
+}
+.Freddy{
+    width: 75%;
+    margin-left: 0;
+    margin-top: 0;
+}
+.Chica{
+    width: 75%;
+    margin-right: 0;
+    margin-top: 0;
+}
+
+.Chica{
+    width: 75%;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.Foxy{
+    width: 75%;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.Bonnie{
+    width: 75%;
+    margin-left: 0;
+    margin-top: 0;
+}
+.pa{
+    margin-left: 10%;
+    font-family: 'Roboto Mono', monospace;
+    color: #cfcfcf;
+}
+.paC{
+    margin-left: 18%;
+    font-family: 'Roboto Mono', monospace;
+    color: #cfcfcf;
+}
+.paF{
+    margin-left: 14%;
+    font-family: 'Roboto Mono', monospace;
+    color: #cfcfcf;
+}
+.paB{
+    margin-left: 13%;
+    font-family: 'Roboto Mono', monospace;
+    color: #cfcfcf;
+}
+.menu-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.562);
+    width: 80%;
+    margin-left: 10%;
+}
+
+.menu-item {
+    list-style: none;
+    margin: 5px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.menu-title {
+    cursor: pointer;
+    text-decoration: none;
+    color: white; /* Cambia el color del texto aquí */
+    padding: 5px 10px;
+}
+
+.menu-title:hover {
+    text-decoration: underline;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    border: 1px solid #555;
+    padding: 10px;
+    z-index: 1;
+}
+
+.menu-item:hover .submenu,
+.menu-item:focus-within .submenu {
+    display: block;
+}
+
+.submenu p {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+}
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+@media (max-width: 768px) {
+    .Freddy, .Chica, .Foxy, .Bonnie {
+        width: 90%;
+    }
+}

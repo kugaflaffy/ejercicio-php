@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freddy</title>
+    <style>
+        * {
+            font-family: 'Roboto Mono', monospace;
+            background-color: black;
+        }
+        .titulo {
+            text-align: center;
+            margin-top: 5%;
+            color: #cfcfcf;
+        }
+        .boton-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .boton {
+            margin-top: 10px;
+            color: white;
+        }
+        .imagen-container {
+            margin-left: 1%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .imagen {
+            height: 600px;
+        }
+        #descripcion{
+            width: 45%;
+            color:#cfcfcf;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="titulo">Chica</h1>
+    <div class="gallery">
+        <div class="imagen-container">
+            <img class="imagen" id="photo" src="./freddy0.jpg" alt="Foto 1">
+            <p id="descripcion">Descripción de la Foto 1</p>
+        </div>
+        <div class="boton-container">
+            <button class="boton" id="prevbutton" disabled>Anterior</button>
+            <button class="boton" id="nextButton">Siguiente</button>
+        </div>
+    </div>
+    <script>
+        let tituloss = ["Chica", "Toy Chica.", "Withered Chica.", "Phantom Chica.", "Nightmare Chica"];
+        let fotos = ["freddy0.jpg","freddy1.jpg", "freddy2.jpg", "freddy3.jpg", "freddy4.jpg"];
+        let descripciones = [
+            "Fredy es uno de los 4 animatronicos originales del juego y tambien es el rostro de Freddy Fazbear's Pizza.Al igual que el resto de los animatrónicos del juego, Freddy tiene un modo de 'caminata libre' por la noche, por lo que suele merodear por la pizzería hasta las 6 AM.Freddy tratará de poner a cualquier humano que vea en un traje de Freddy Fazbear, causando su muerte.",
+            "Hace su aparición en Five Nights at Freddy's 2 siendo uno de los 4 animatronicos desmantelados ubicados en parts and service estos son usados para repuestos de los nuevos animatronicos, sin embargo aun pueden deambular por la noche y atacarte",
+            "Es la versión toy de freddy Fazbear construida en la re-apertura de Freddy Fazbear's Pizza en el año de 1987.",
+            "Hace su aparición en Five Nights at Freddy's 3. siendo el 'fantasma' de Freddy Fazbear. En esta ocasión, extrañamente utiliza el modelo de Golden Freddy del segundo juego pero ahora tiene ojos en ves se cuencas vacias.",
+            "Aparece en Five Nights at Freddy's 4: The Final Chapter su cuerpo parece estar compuesto por 3 mini-versiones de sí mismo, denominados como los Freddles."
+        ];
+        let index = 0;
+
+        let antes = document.getElementById("prevbutton");
+        let despues = document.getElementById("nextButton");
+        let foto = document.getElementById("photo");
+        let descripcion = document.getElementById("descripcion");
+        let titulo = document.querySelector('.titulo');
+
+        function enseñarFoto() {
+            foto.src = fotos[index];
+            descripcion.textContent = descripciones[index];
+            titulo.textContent = tituloss[index];
+        }
+
+        antes.addEventListener("click", () => {
+            if (index > 0) {
+                index--;
+                enseñarFoto();
+                despues.disabled = false;
+            }
+            if (index === 0) {
+                antes.disabled = true;
+            }
+        });
+
+        despues.addEventListener("click", () => {
+            if (index < fotos.length - 1) {
+                index++;
+                enseñarFoto();
+                antes.disabled = false;
+            }
+            if (index === fotos.length - 1) {
+                despues.disabled = true;
+            }
+        });
+
+        enseñarFoto();
+    </script>
+</body>
+</html>ºº

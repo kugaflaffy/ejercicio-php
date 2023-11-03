@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>Five Nights at Freddy's</title>
+</head>
+<body>
+    <div id="container">
+        <div class="intro">
+            <h1 class="logo-header">
+                <span class="logo">¿Podrás sobrevivir?</span> 
+            </h1>
+        </div>
+            <div class="window-frame">
+                <h1 id="titulo">
+                    Five<br>
+                    Nights<br>
+                    at<br>
+                    Freddy's
+                </h1>
+            </div>
+            <div class="menu">
+                <div class="menu-item">
+                    <p class="menu-title">Inicio</p>
+                    <div class="submenu">
+                        <p><a href="jueguitos.html">Game</a></p>
+                        <p><a href="personajes.html">Personajes</a></p>
+                        <p><a href="miniJueguito.html">MiniJuego</a></p>
+                        <p><a href="recetas.html">Recetas</a></p>
+                        <p><a href="pelicula.html">Película</a></p>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <script>
+        //Menu
+        document.addEventListener("DOMContentLoaded", function () {
+            var menuItems = document.querySelectorAll(".menu-item");
+
+            menuItems.forEach(function (item) {
+                var submenu = item.querySelector(".submenu");
+                
+                if (submenu) {
+                    item.addEventListener("click", function () {
+                        submenu.classList.toggle("activo");
+                    });
+                }
+            });
+        });
+        //intro 
+        let intro = document.querySelector('.intro');
+        let logo = document.querySelector('.logo-header');
+        let logoSpan = document.querySelector('.logo');
+
+        window.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => {
+                    logoSpan.classList.add('active');
+                }, 400);
+
+                setTimeout(() => {
+                    logoSpan.classList.remove('active');
+                    logoSpan.classList.add('fade');
+                }, 2000);
+
+                setTimeout(() => {
+                    intro.style.top = '-100vh';
+                }, 2300);
+            });
+    </script>
+</body>
+</html>

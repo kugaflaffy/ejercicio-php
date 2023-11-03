@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Información Bonnie</title>
+        <style>
+            * {
+                font-family: 'Roboto Mono', monospace;
+                background-color: black;
+            }
+            .titulo {
+                text-align: center;
+                margin-top: 5%;
+                color: #cfcfcf;
+            }
+            .gallery {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .imagen-container {
+                margin: 1%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .imagen {
+                max-width: 100%; /* Responsive image width */
+                height: auto; /* Maintain aspect ratio */
+            }
+            #descripcion {
+                width: 100%; /* Full width for description */
+                color: #cfcfcf;
+                text-align: center; /* Center text */
+            }
+            .boton-container {
+                display: flex;
+                justify-content: center;
+            }
+            .boton {
+                margin-top: 10px;
+                color: white;
+            }
+            @media (max-width: 768px) {
+                .imagen-container {
+                    margin: 0; /* Remove margin for small screens */
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="titulo">Bonnie</h1>
+        <div class="gallery">
+            <div class="imagen-container">
+                <img class="imagen" id="photo" src="./bonnie0.jpg" alt="Foto 1">
+                <p id="descripcion">Descripción de la Foto 1</p>
+            </div>
+            <div class="boton-container">
+                <button class="boton" id="prevbutton" disabled>Anterior</button>
+                <button class="boton" id="nextButton">Siguiente</button>
+            </div>
+        </div>
+    <script>
+        let tituloss = ["Bonnie", "Withered Bonnie", "Toy Bonnie", "Phantom Bonnie", "Springtrap"];
+        let fotos = ["bonnie0.webp","bonnie1.jpg", "bonnie2.jfif", "bonnie3.jpg", "bonnie4.jpg"];
+        let descripciones = [
+            "Es el guitarrista en la banda del restaurante y en la noche generalmente es el primero en moverse y uno de los mas activos",
+            "También llamado Old Bonnie es uno de los cinco animatrónicos desmantelados que hacen su aparición en Five Nights at Freddy's 2.",
+            "Es la versión mejorada de Bonnie. Al igual que su antecesor suele ser el primero en salir del Show Stage. Éste se vuelve peligroso desde la 1ra Noche.",
+            "Usa el modelo de Bonnie en FNAF 2 solo que mas reparado,tambien como los otros esta quemado y tiene pupilas blancas en lugar de ojos",
+            "Es el único que es capaz de matar al jugador en el juego. Springtrap, además, es el único animatrónico que sobrevivió luego del cierre de Freddy Fazbear's Pizza. Este animatrónico fue un traje de resortes, usado por los empleados para entretener a los niños en los distintos restaurantes de la franquicia."
+        ];
+        let index = 0;
+
+        let antes = document.getElementById("prevbutton");
+        let despues = document.getElementById("nextButton");
+        let foto = document.getElementById("photo");
+        let descripcion = document.getElementById("descripcion");
+        let titulo = document.querySelector('.titulo');
+
+        function enseñarFoto() {
+            foto.src = fotos[index];
+            descripcion.textContent = descripciones[index];
+            titulo.textContent = tituloss[index];
+        }
+
+        antes.addEventListener("click", () => {
+            if (index > 0) {
+                index--;
+                enseñarFoto();
+                despues.disabled = false;
+            }
+            if (index === 0) {
+                antes.disabled = true;
+            }
+        });
+
+        despues.addEventListener("click", () => {
+            if (index < fotos.length - 1) {
+                index++;
+                enseñarFoto();
+                antes.disabled = false;
+            }
+            if (index === fotos.length - 1) {
+                despues.disabled = true;
+            }
+        });
+
+        enseñarFoto();
+    </script>
+</body>
+</html>
