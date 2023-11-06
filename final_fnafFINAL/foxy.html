@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Información Foxy</title>
+        <style>
+            * {
+                font-family: 'Roboto Mono', monospace;
+                background-color: black;
+            }
+            .titulo {
+                text-align: center;
+                margin-top: 5%;
+                color: #cfcfcf;
+            }
+            .boton-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .boton {
+                margin-top: 10px;
+                color: white;
+            }
+            .imagen-container {
+                margin-left: 1%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .imagen {
+                height: 600px;
+            }
+            #descripcion{
+                width: 45%;
+                color:#cfcfcf;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="titulo">Foxy</h1>
+        <div class="gallery">
+            <div class="imagen-container">
+                <img class="imagen" id="photo" src="./foxy0.jpg" alt="Foto 1">
+                <p id="descripcion">Descripción de la Foto 1</p>
+            </div>
+            <div class="boton-container">
+                <button class="boton" id="prevbutton" disabled>Anterior</button>
+                <button class="boton" id="nextButton">Siguiente</button>
+            </div>
+        </div>
+    <script>
+        let tituloss = ["Foxy", "Withered Foxy", "Mangle", "Phantom Foxy", "Nightmare Foxy"];
+        let fotos = ["foxy0.jpg","foxy1.jpg", "foxy2.png", "foxy3.png", "foxy4.png"];
+        let descripciones = [
+            "Fue usado en Freddy Fazbear's Pizza para el entretenimiento del público. El a diferencia de los otros animatrónicos tenía su propia atracción, la Pirate Cove, pero fue puesta junto al animatrónico fuera de servicio debido a su deterioro y mal funcionamiento",
+            "Fue usado como repuesto en la habitación de Parts/Service, siendo activo en la noche cuando sale a atacar al guardia de seguridad.",
+            "También conocida como Toy Foxy o Foxy 2.0  hace su aparición en Five Nights at Freddy's 2, y es la versión avanzada, mejorada y perfeccionada de Foxy. (Tambien su versión femenina al igual que funtime foxy)",
+            "Es el 'fantasma' de foxy. Él adquiere un aspecto similar a su modelo del segundo juego, aunque con ciertas diferencias, como la más notoria, que es la ausencia de su antebrazo derecho, lo que se traduce en la perdida de su garfio pirata.",
+            "la versión pesadilla de Foxy. en esta ocasión cuenta con su típico garfio pirata, también tiene la mayoría del cuerpo destruido, sobretodo en el hocico, que tiene completamente descubierto."
+        ];
+        let index = 0;
+
+        let antes = document.getElementById("prevbutton");
+        let despues = document.getElementById("nextButton");
+        let foto = document.getElementById("photo");
+        let descripcion = document.getElementById("descripcion");
+        let titulo = document.querySelector('.titulo');
+
+        function enseñarFoto() {
+            foto.src = fotos[index];
+            descripcion.textContent = descripciones[index];
+            titulo.textContent = tituloss[index];
+        }
+
+        antes.addEventListener("click", () => {
+            if (index > 0) {
+                index--;
+                enseñarFoto();
+                despues.disabled = false;
+            }
+            if (index === 0) {
+                antes.disabled = true;
+            }
+        });
+
+        despues.addEventListener("click", () => {
+            if (index < fotos.length - 1) {
+                index++;
+                enseñarFoto();
+                antes.disabled = false;
+            }
+            if (index === fotos.length - 1) {
+                despues.disabled = true;
+            }
+        });
+
+        enseñarFoto();
+    </script>
+</body>
+</html>
