@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Información</title>
+</head>
+<body>
+    <div class="alumno-info">
+        <h2>Información del Alumno</h2>
+        <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+        <p><strong>Edad:</strong> <span id="edad"></span></p>
+        <p><strong>Ciclo:</strong> <span id="ciclo"></span></p>
+        <p><strong>Curso:</strong> <span id="curso"></span></p>
+        <p><strong>Tutor:</strong> <span id="tutor"></span></p>
+
+        <h3>Asignaturas:</h3>
+        <button onclick="mostrarAsignaturas()">Mostrar asignaturas</button>
+        <ul id="asignaturas"></ul>
+
+        <label>Selecciona una asignatura</label>
+        <select id="seleccionada">
+            <option value="0">Programación</option>
+            <option value="1">Lenguaje de marcas</option>
+            <option value="2">Base de Datos</option>
+            <option value="3">Interfaces</option>
+        </select>
+        <br><br>
+        <label>Selecciona una hora</label>
+        <input type="number" id="number">
+        <button onclick="cambiarHora()">Cambiar hora</button>
+        
+        <h3>Notas:</h3>
+        <ul id="notas"></ul>
+    </div>
+    <script src="ejercicios.js"></script>
+</body>
+</html>
