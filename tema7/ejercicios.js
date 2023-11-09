@@ -81,6 +81,7 @@ document.getElementById("edad").textContent = alumno.edad;
 document.getElementById("ciclo").textContent = alumno.ciclo;
 document.getElementById("curso").textContent = alumno.curso;
 document.getElementById("tutor").textContent = alumno.tutor.nombre;
+document.getElementById("asignaturas").textContent = alumno.asignaturas.map (asignaturas=> asignaturas.nombre).join(', ');
 
 // Función para mostrar asignaturas
 function mostrarAsignaturas() {
