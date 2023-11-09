@@ -6,12 +6,6 @@
     <title>Plataforma</title>
 </head>
 <body>
-    <!DOCTYPE html>
-<html>
-<head>
-    <title>Información</title>
-</head>
-<body>
     <div class="alumno-info">
         <h2>Información del Alumno</h2>
         <p><strong>Nombre:</strong> <span id="nombre"></span></p>
@@ -35,9 +29,17 @@
         <label>Selecciona una hora</label>
         <input type="number" id="number">
         <button onclick="cambiarHora()">Cambiar hora</button>
-        
+
         <h3>Notas:</h3>
         <ul id="notas"></ul>
+
+        <button id="datosTutor" onclick="alumno.tutor.devolverDatos()">Datos Tutor</button>
+        <div id="resultado"></div>
+        <label>Cambiar el nombre del tutor:</label>
+        <input type="text" id="tutor">
+        <button onclick="cambiarTutor()">Cambiar tutor</button><br>
+        <label>(Será necesario darle al botón otra vez para ver los cambios)</label>
+
     </div>
     <script src="ejercicios.js"></script>
 </body>

@@ -1,22 +1,44 @@
 class Tutor {
-  constructor(nombre, edad, dni, tituloUniversitario) {
-    Object.assign(this, { nombre, edad, dni, tituloUniversitario });
-  }
+    //creamos clase de tutor, asignatura y alumno con un constructor pasando valores
+    constructor(nombre, edad, dni, tituloUniversitario) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.dni = dni;
+        this.tituloUniversitario = tituloUniversitario;
+    }
+    // Método para mostrar los datos del tutor
+    devolverDatos() {
+        const datosList = document.getElementById("resultado");
+        datosList.innerHTML = ''; // Limpiar la lista antes de mostrar los datos del tutor
+    
+        const li = document.createElement("li");
+        li.textContent = `Nombre: ${this.nombre}, Edad: ${this.edad}, DNI: ${this.dni}, Título Universitario: ${this.tituloUniversitario}`;
+        datosList.appendChild(li);
+    }
+
 }
 
 class Asignatura {
-  constructor(nombre, curso, horasTotales) {
-    Object.assign(this, { nombre, curso, horasTotales });
-  }
+    constructor(nombre, curso, horasTotales) {
+        this.nombre = nombre;
+        this.curso = curso;
+        this.horasTotales = horasTotales;
+    }
   cambiarHora(nueva){
     this.horasTotales = nueva;
   }
 }
 
 class Alumno {
-  constructor(nombre, edad, ciclo, curso, tutor, asignaturas) {
-    Object.assign(this, { nombre, edad, ciclo, curso, tutor, asignaturas, notas: new Array(asignaturas.length) });
-  }
+    constructor(nombre, edad, ciclo, curso, tutor, asignaturas) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.ciclo = ciclo;
+        this.curso = curso;
+        this.tutor = tutor;
+        this.asignaturas = asignaturas;
+        this.notas = new Array(asignaturas.length);
+    }
 
   mostrarDatos() {
     let datos = '';
@@ -78,6 +100,14 @@ function cambiarHora() {
       asignaturas[asignaturaSeleccionadaIndex].cambiarHora(number);
       mostrarAsignaturas(); // Actualizar la visualización de las asignaturas
     } else {
-      alert("Seleccione una asignatura válida.");
+      alert("Selecciona una asignatura válida");
     }
+}
+//Ejercicio 5
+
+ 
+function cambiarTutor() {
+    const nuevoNombreTutor = document.querySelector('input[id="tutor"]').value;
+    tutor.nombre=nuevoNombreTutor;
+    document.getElementById("tutor").textContent = tutor.nombre;
 }
