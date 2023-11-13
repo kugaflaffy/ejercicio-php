@@ -6,63 +6,92 @@
     <title>miau</title>
 </head>
 <body>
-    <!--hacemos otro archivo php para crear nuestro menu, así cuando iniciermos sesión nos lleva a otro sitio-->
+    
+    <!--hacemos otro archivo php para crear nuestro menú, así cuando iniciemos sesión nos lleva a otro sitio-->
     <?php
-        //este if nos servirá para verificar que lo que hemos enviado está
+        session_start();
+ 
+        // Validar la autenticación del usuario
         if (isset($_POST['login']) && isset($_POST['password'])) {
             $usuario = $_POST['login'];
             $password = $_POST['password'];
+            //pasamos la función que hicimos abajo y creamos $rol
             if (validar($usuario, $password)) {
-                echo 'Bienvenido :D! ---->';
+                $_SESSION["usuario"] = $usuario;
+                if ($usuario =="admin") {
+                    $_SESSION["rol"] = "jefe";
+                }else{
+                    $_SESSION["rol"] = "normal";
+                }
+                // Establecer una cookie de sesión con el nombre del usuario
+                setcookie('usuario', $usuario, time() + 3600, '/');
+                
+                echo 'Bienvenido ' . htmlspecialchars($usuario) . '! ---->';
                 tiempo();
             } else {
-                //si se valida nos da la bienvenida y si no nos debuelber al login vaciando el usuario y la contraseña incorrecta
-                echo 'incorrecto';
+                echo 'Usuario o contraseña incorrectos';
                 header('Location: embebidito.php');
+                exit();
             }
-        } 
 
+        }
+
+        // Función para validar el usuario y la contraseña poniendo los dos usuarios
         function validar($usuario, $password) {
-            //esta funcon comprueba que lo que introducimos es correcto, la llamamos desde el if de arriba
-            if ($usuario == 'admin' && $password == '1234') {
+            // Comprueba que lo que introducimos es correcto
+            if (($usuario == 'admin' && $password == '1234') || ($usuario == 'cliente1' && $password == 'miau')) {
                 return true;
+            }else {
+                return false;
             }
-            return false;
+            
         }
-        function tiempo(){ //para obtener la fecha y hora actual
+
+        // Función para obtener la fecha y hora actual
+        function tiempo() {
             $fecha_actual = date("d-m-Y h:i:s");
-            echo 'la fecha y hora de acceso es: '.$fecha_actual;
+            echo 'La fecha y hora de acceso es: '.$fecha_actual;
         }
+        //metemos todo en un if grande para ver si está activa activa la sesión del usuario
+        if (isset($_SESSION["usuario"])) {
     ?>
+
+
     <form action="index.php" method="get">
         <label for="name">1. Obtener la ruta actual en la que nos encontramos</label>
         <input type="submit" id="rutita" name="rutita"> 
     </form>
+
     <?php 
-    //para obtener la ruta usaremos get para obtener los datos que queremoa
-    //usamos un if para comprabar nque lo enviado está y pedimos la ruta
-        if(isset($_GET["rutita"])){
-           $ruta = $_SERVER['REQUEST_URI'];
-            echo 'Ruta actual: '.$ruta;
-        } 
+        //hago un form para cada ejercicio
+    if(isset($_GET["rutita"])){
+        $ruta = getcwd(); //con esto la obtenemos ya 
+        echo 'Ruta actual: '.$ruta;
+    } 
     ?>
+
     <form action="index.php" method="post">
         <label for="name">2. Buscar un fichero</label>
         <input type="text" name="nombre_archivo">
         <input type="submit" name="buscar" value="Buscar">
     </form>
+
     <?php 
-        //para buscar un fichero usaremos el metodo post porque estamos pidiendo la información que queremos, si existe nos devuelve le fichero
-        if (isset($_POST['buscar'])) {
-            $nombre_archivo = $_POST['nombre_archivo'];
-            if(file_exists($nombre_archivo)){
+    if (isset($_POST['buscar'])) {
+        $nombre_archivo = $_POST['nombre_archivo'];
+        if(file_exists($nombre_archivo)){ //si el archivo existe me lo dice
             echo "El archivo $nombre_archivo existe.";
-            } else{
+        } else{
             echo "El archivo $nombre_archivo no existe";
-            }
         }
+    }
     ?>
-     <form action="index.php" method="post">
+
+    <?php
+        if ($_SESSION["rol"] == "jefe") { //en caso de que sea el admin/jefe el que inicie sesión saldrá esto sino no
+    ?>
+
+    <form action="index.php" method="post">
         <label for="name">3. Crear un nuevo fichero con opciones de permisos y escribir en él</label><br>
         <label for="nombre_archivo">Nombre:</label>
         <input type="text" name="nombre_archivo" required><br>
@@ -72,34 +101,36 @@
 
         <label for="permisos">Permisos (ej. 0644):</label>
         <input type="text" name="permisos" required><br>
-
         <input type="submit" name="crear_archivo" value="Crear Archivo">
     </form>
-    <?php
-    //usamos el metodo post porque estamos creando y metiendo datos
-        if (isset($_POST['crear_archivo'])) {
-            $nombre_archivo = $_POST['nombre_archivo'];
-            $contenido = $_POST['contenido'];
-            $permisos = $_POST['permisos'];
+ 
+       <?php
+        }   
 
-            //intenta abrir el archivo para escritura (crea el archivo si no existe).
-            $archivo = fopen($nombre_archivo, 'w');
+    if (isset($_POST['crear_archivo'])) {
+        $nombre_archivo = $_POST['nombre_archivo'];
+        $contenido = $_POST['contenido'];
+        $permisos = $_POST['permisos'];
 
-            if ($archivo) {
-                //scribe el contenido
-                fwrite($archivo, $contenido);
+        $archivo = fopen($nombre_archivo, 'w');
 
-                //establece los permisos
-                chmod($nombre_archivo, octdec($permisos));
-
-                //cierra el archivo.
-                fclose($archivo);
-
-                echo "Se ha creado el archivo";
-            } else {
-                echo "No se pudo crear";
-            }
+        if ($archivo) {
+            fwrite($archivo, $contenido);
+            chmod($nombre_archivo, octdec($permisos)); //le damos permisos, escribimos...
+            fclose($archivo);
+            echo "Se ha creado el archivo";
+        } else {
+            echo "No se pudo crear";
         }
-?>
+    }
+}else{
+   header('Location: embebidito.php'); //y volvemos al login
+}
+
+//el siguien5te form será para cerrar sesión
+    ?>
+    <form action="cerrar.php" method="post">
+        <input type="submit" name="cerrar_sesion" value="log out">
+    </form>
 </body>
 </html>

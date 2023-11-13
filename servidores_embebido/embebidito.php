@@ -6,8 +6,8 @@
     <title>formulario</title>
 </head>
 <body>
-    <form action="index.php" method="post"> <!--aquí estará nuestro login, usaremos un metodo POST para insertar el usuario y la contraseña-->
-        <p>Usurio: <input type="text" name="login" /></p>
+    <form action="index.php" method="post"> <!--aquí estará nuestro login, usaremos un método POST para insertar el usuario y la contraseña-->
+        <p>Usuario: <input type="text" name="login" /></p>
         <p>Contraseña: <input type="password" name="password" /></p>
         <p><input type="submit" /></p>
     </form>
