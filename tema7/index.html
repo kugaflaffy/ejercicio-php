@@ -4,44 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plataforma</title>
+    <style>
+         body {
+    font-family: Arial, sans-serif;
+    background-color: #ffdde1; /* Cambiado a un tono rosa claro */
+    margin: 0;
+    padding: 0;
+}
+
+.alumno-info {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #dd5484; /* Tono rosa oscuro */
+}
+
+h3 {
+    color: #dd5484; /* Tono rosa oscuro */
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #555;
+}
+
+button {
+    background-color: #f3aed1; /* Tono rosa */
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.6s; /* Agregado: transición de transformación */
+}
+
+button:hover {
+    background-color: #dd5484; /* Tono rosa más oscuro al pasar el ratón */
+    transform: scale(1.20); /* Agregado: agranda el botón al pasar el ratón */
+}
+
+select,
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+#informacionTodosAlumnos div {
+    background-color: #f8f9fa;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+#infoAlumno {
+    font-weight: bold;
+    color: #333;
+}
+
+#asignaturas {
+    margin-top: 10px;
+}
+
+#resultado {
+    margin-top: 10px;
+}
+
+#mediaPorNombre {
+    color: #dd5484; /* Tono rosa oscuro */
+    margin-top: 10px;
+}
+.menu, a{
+    font-size: x-large;
+    margin-left: 16%;
+    color:#000000;
+    width: 70%;
+    padding: 1%;
+}
+.menu-item{
+    margin: 1%;
+    cursor: pointer;
+}
+.menu-title{
+    margin: 0;
+    padding: 1%;
+}
+.submenu{
+    display: none;
+    padding-left: 2%;
+}
+.submenu p{
+    margin: 0;
+    padding: 0.5%;
+    cursor: pointer;
+}
+.submenu.activo{
+    display: block;
+}
+.menu-title:hover {
+    background-color: #555;
+}
+    </style>
 </head>
 <body>
+    <script>
+        //Menu
+        document.addEventListener("DOMContentLoaded", function () {
+            var menuItems = document.querySelectorAll(".menu-item");
+
+            menuItems.forEach(function (item) {
+                var submenu = item.querySelector(".submenu");
+                
+                if (submenu) {
+                    item.addEventListener("click", function () {
+                        submenu.classList.toggle("activo");
+                    });
+                }
+            });
+        });
+        </script>
     <div class="alumno-info">
-        <h2>Información del Alumno</h2>
-        <p><strong>Nombre:</strong> <span id="nombre"></span></p>
-        <p><strong>Edad:</strong> <span id="edad"></span></p>
-        <p><strong>Ciclo:</strong> <span id="ciclo"></span></p>
-        <p><strong>Curso:</strong> <span id="curso"></span></p>
-        <p><strong>Tutor:</strong> <span id="tutor"></span></p>
-        <p><strong>Asignaturas:</strong> <span id="asignaturas"></span></p>
-
-        <h3>Asignaturas:</h3>
-        <button onclick="mostrarAsignaturas()">Mostrar asignaturas</button>
-        <ul id="asignaturas"></ul>
-
-        <label>Selecciona una asignatura</label>
-        <select id="seleccionada">
-            <option value="0">Programación</option>
-            <option value="1">Lenguaje de marcas</option>
-            <option value="2">Base de Datos</option>
-            <option value="3">Interfaces</option>
-        </select>
-        <br><br>
-        <label>Selecciona una hora</label>
-        <input type="number" id="number">
-        <button onclick="cambiarHora()">Cambiar hora</button>
-
-        <h3>Notas:</h3>
-        <ul id="notas"></ul>
-
-        <button id="datosTutor" onclick="alumno.tutor.devolverDatos()">Datos Tutor</button>
-        <div id="resultado"></div>
-        <label>Cambiar el nombre del tutor:</label>
-        <input type="text" id="tutor">
-        <button onclick="cambiarTutor()">Cambiar tutor</button><br>
-        <label>(Será necesario darle al botón otra vez para ver los cambios)</label>
-
-    </div>
+        <div class="menu">
+            <div class="menu-item">
+                <p class="menu-title">Inicio</p>
+                <div class="submenu">
+                    <p><a href="asignaturas.html">Asignaturas</a></p>
+                    <p><a href="notas.html">Datos</a></p>
+                    <p><a href="calculo.html">Calculo de la media</a></p>
+                </div>
+            </div>
+        </div>
+        
     <script src="ejercicios.js"></script>
 </body>
 </html>

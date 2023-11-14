@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+         body {
+    font-family: Arial, sans-serif;
+    background-color: #ffdde1; /* Cambiado a un tono rosa claro */
+    margin: 0;
+    padding: 0;
+}
+
+.alumno-info {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #dd5484; /* Tono rosa oscuro */
+}
+
+h3 {
+    color: #dd5484; /* Tono rosa oscuro */
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #555;
+}
+
+button {
+    background-color: #f3aed1; /* Tono rosa */
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.6s; /* Agregado: transición de transformación */
+}
+
+button:hover {
+    background-color: #dd5484; /* Tono rosa más oscuro al pasar el ratón */
+    transform: scale(1.20); /* Agregado: agranda el botón al pasar el ratón */
+}
+
+select,
+input {
+    width: 15%;
+    padding: 8px;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+</style>
+<body>
+    
+    <h3>Asignaturas:</h3>
+        <button onclick="mostrarAsignaturas()">Mostrar asignaturas</button>
+        <div id="asignaturas"></div>
+
+        <label>Selecciona una asignatura</label>
+        <select id="seleccionada">
+            <option value="0">Programación</option>
+            <option value="1">Lenguaje de marcas</option>
+            <option value="2">Base de Datos</option>
+            <option value="3">Interfaces</option>
+        </select>
+        <br><br>
+        <label>Selecciona una hora</label>
+        <input type="number" id="number">
+        <button onclick="cambiarHora()">Cambiar hora</button>
+        <script src="ejercicios.js"></script>
+</body>
+</html>
