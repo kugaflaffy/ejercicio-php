@@ -1,120 +1,207 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aplicación de Tareas</title>
-<style>
-body {
-font-family: Arial, sans-serif;
-background-color: #f4f4f4;
-margin: 20px;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario</title>
+  <style>
+    body {
+      background-color: #fce4ec; /* Rosa claro */
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-form {
-max-width: 400px;
-margin: 0 auto;
-background: #fff;
-padding: 20px;
-border-radius: 5px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-label {
-display: block;
-margin-bottom: 8px;
-}
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
 
-input {
-width: 100%;
-padding: 8px;
-margin-bottom: 15px;
-box-sizing: border-box;
-}
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
 
-button {
-background: #4caf50;
-color: #fff;
-padding: 10px 15px;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-}
+    button {
+      background-color: #ff4081; /* Rosa más intenso */
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
 
-button:hover {
-background: #45a049;
-}
-
-#taskForm {
-max-width: 400px;
-margin: 20px auto;
-background: #fff;
-padding: 20px;
-border-radius: 5px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-display: none; /* Ocultar el formulario de tareas al inicio */
-}
-
-#taskList {
-max-width: 400px;
-margin: 20px auto;
-background: #fff;
-padding: 20px;
-border-radius: 5px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-list-style-type: none;
-}
-
-.delete-button {
-background: #ff4d4d;
-color: #fff;
-border: none;
-padding: 4px 8px;
-border-radius: 3px;
-cursor: pointer;
-}
-</style>
+    button:hover {
+      background-color: #d81b60; /* Cambia el color al pasar el ratón */
+    }
+    #taskForm, #operaciones{
+        margin-left: 2%;
+        
+    }
+    </style>
 </head>
 <body>
 
-<form id="loginForm">
-<label for="username">Usuario:</label>
-<input type="text" id="username" name="username" required>
+  <form id="userForm">
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" required pattern="[A-Za-z ]+">
 
-<label for="password">Contraseña:</label>
-<input type="password" id="password" name="password" required>
+    <label for="age">Edad:</label>
+    <input type="number" id="age" required min="0">
 
-<button type="button" onclick="login()">Iniciar Sesión</button>
-</form>
+    <button type="button" onclick="submitForm()">Enviar</button>
+  </form>
 
-<div id="taskForm">
-<label for="task">Nueva Tarea:</label>
-<input type="text" id="task" name="task" required>
-<button onclick="addTask()">Agregar Tarea</button>
-</div>
+  <script>
+    function submitForm() {
+      var nameInput = document.getElementById('name');
+      var ageInput = document.getElementById('age');
 
-<ul id="taskList"></ul>
+      var name = nameInput.value.trim();
+      var age = parseInt(ageInput.value, 10);
+
+      // Validaciones
+      if (/^[A-Za-z ]+$/.test(name) && !isNaN(age) && age >= 0) {
+        // Procesar el formulario
+        alert('Formulario enviado:\nNombre: ' + name + '\nEdad: ' + age);
+      } else {
+        alert('Por favor, ingrese un nombre válido y una edad positiva.');
+      }
+    }
+  </script>
+
+  <form id="taskForm">
+    <div id="formulario2">
+        <label for="task">Nueva Tarea:</label>
+        <input type="text" id="task" name="task" required>
+        <button onclick="addTask()">Agregar Tarea</button>
+    </div>
+    
+    <ul id="taskList"></ul>
+  </form>
+ 
 
 <script>
-function login() {
-var username = document.getElementById('username').value;
-var password = document.getElementById('password').value;
+    document.addEventListener("DOMContentLoaded", function () {
+        function addTask() {
+            var taskInput = document.getElementById('task');
+            var taskList = document.getElementById('taskList');
 
-// Aquí deberías realizar la lógica de autenticación (por ejemplo, comparar con credenciales almacenadas)
+            // Obtener el valor del input
+            var taskText = taskInput.value;
 
-// En este ejemplo, simplemente mostramos el formulario de tareas si el usuario es "demo" y la contraseña es "demo123"
-if (username === 'caro' && password === 'miau') {
-document.getElementById('loginForm').style.display = 'none';
-document.getElementById('taskForm').style.display = 'block';
-} else {
-alert('Credenciales incorrectas. Intenta de nuevo.');
-}
-}
+            // Crear un nuevo elemento de lista y un botón de eliminación
+            var listItem = document.createElement('li');
+            var deleteButton = document.createElement('button');
 
-function addTask() {
-// ... (Código de la función addTask como se proporcionó anteriormente)
-}
-</script>
+            // Configurar el contenido del elemento de lista y el botón de eliminación
+            listItem.textContent = taskText;
+            deleteButton.textContent = 'Eliminar';
+            deleteButton.className = 'delete-button';
 
+            // Agregar el botón de eliminación al elemento de lista
+            listItem.appendChild(deleteButton);
+
+            // Agregar el elemento de lista a la lista
+            taskList.appendChild(listItem);
+
+            // Limpiar el input después de agregar la tarea
+            taskInput.value = '';
+
+            // Agregar un evento al botón de eliminación para eliminar la tarea
+            deleteButton.addEventListener('click', function () {
+                taskList.removeChild(listItem);
+            });
+        }
+
+        window.addTask = addTask; // Hacer la función accesible desde el ámbito global
+    });
+    </script>
+    <form id="operaciones">
+        <div>
+            <label for="operaciones"><b>OPERACIONES:</b></label>
+            <label for="suma"><b>Sumar:</b></label>
+            <label for="operaciones">primer núm</label>
+            <input type="number" id="uno">
+            <label for="operaciones">segundo núm</label>
+            <input type="number" id="dos">
+            <button onclick="sumar()">Sumar</button>
+            <label></label>
+            <label for="resta"><b>Restar:</b></label>
+            <label for="operaciones">primer núm</label>
+            <input type="number" id="restar1">
+            <label for="operaciones">segundo núm</label>
+            <input type="number" id="restar2">
+            <button onclick="restar()">Restar</button>
+            <label></label>
+            <label for="Multiplicación"><b>Multiplicación:</b></label>
+            <label for="operaciones">primer núm</label>
+            <input type="number" id="mult1">
+            <label for="operaciones">segundo núm</label>
+            <input type="number" id="mult2">
+            <button onclick="multiplicar()">Restar</button>
+            <label></label>
+            <label for="Dividir"><b>Dividir:</b></label>
+            <label for="operaciones">primer núm</label>
+            <input type="number" id="div1">
+            <label for="operaciones">segundo núm</label>
+            <input type="number" id="div2">
+            <button onclick="dividir()">Dividir</button>
+        </div>
+    </form>
+    <script>
+        function sumar(){
+            var operando1 = parseInt(document.getElementById('uno').value);
+            var operando2 = parseInt(document.getElementById('dos').value);
+            var resultado; 
+            if (resultado= operando1 + operando2) {
+                alert("El resultado es " + resultado + "! ♡");
+            } else {
+                alert('Por favor, ingrese un número.');
+            }
+        }
+        function restar(){
+            var operando1 = parseInt(document.getElementById('restar1').value);
+            var operando2 = parseInt(document.getElementById('restar2').value);
+            var resultado; 
+            if (resultado= operando1 - operando2) {
+                alert("El resultado es " + resultado + "! ♡");
+            } else {
+                alert('Por favor, ingrese un número.');
+            }
+        }
+        function multiplicar(){
+            var operando1 = parseInt(document.getElementById('mult1').value);
+            var operando2 = parseInt(document.getElementById('mult2').value);
+            var resultado; 
+            if (resultado= operando1 * operando2) {
+                alert("El resultado es " + resultado + "! ♡");
+            } else {
+                alert('Por favor, ingrese un número.');
+            }
+        }
+        function dividir(){
+            var operando1 = parseInt(document.getElementById('div1').value);
+            var operando2 = parseInt(document.getElementById('div2').value);
+            var resultado; 
+            if (resultado= operando1 / operando2) {
+                alert("El resultado es " + resultado + "! ♡");
+            } else {
+                alert('Por favor, ingrese un número.');
+            }
+        }
+    </script>
 </body>
 </html>
