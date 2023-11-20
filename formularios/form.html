@@ -46,7 +46,7 @@
     button:hover {
       background-color: #d81b60; /* Cambia el color al pasar el ratón */
     }
-    #taskForm, #operaciones{
+    #taskForm, #operaciones, #registros{
         margin-left: 2%;
         
     }
@@ -202,6 +202,27 @@
                 alert('Por favor, ingrese un número.');
             }
         }
+    </script>
+    <form id="registros">
+      <label><b>Registro:</b></label>
+      <label>Nombre:</label>
+      <input type="text" id="name">
+
+      <label>Correo:</label>
+      <input type="email" id="correo">
+
+      <label >Contraseña:</label>
+      <input type="password" id="con">
+
+      <label >Confirma la contraseña:</label>
+      <input type="password2" id="con2">
+
+      <button onclick="registro()">Registrarse</button>
+    </form>
+    <script>
+      function registro(){
+        
+      }
     </script>
 </body>
 </html>
