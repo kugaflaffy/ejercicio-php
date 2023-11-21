@@ -46,7 +46,7 @@
     button:hover {
       background-color: #d81b60; /* Cambia el color al pasar el ratón */
     }
-    #taskForm, #operaciones, #registros{
+    #taskForm, #operaciones, #registros, #registroForm{
         margin-left: 2%;
         
     }
@@ -203,26 +203,75 @@
             }
         }
     </script>
-    <form id="registros">
-      <label><b>Registro:</b></label>
-      <label>Nombre:</label>
-      <input type="text" id="name">
+        <form id="registroForm">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" required>
+  
+          <br>
+  
+          <label for="correo">Correo:</label>
+          <input type="email" id="correo" name="correo" required>
+          <span id="errorCorreo" class="error-message"></span>
+  
+          <br>
+  
+          <label for="contrasena">Contraseña:</label>
+          <input type="password" id="contrasena" name="contrasena" required>
+          <span id="fortalezaContrasena" class="error-message"></span>
+  
+          <br>
+  
+          <label for="confirmarContrasena">Confirmar contraseña:</label>
+          <input type="password" id="confirmarContrasena" name="confirmarContrasena" required>
+          <span id="errorConfirmarContrasena" class="error-message"></span>
+  
+          <br>
+  
+          <button onclick="validarFormulario()">Registrar</button>
+      </form>
+  
+      <script>
+          function validarFormulario() {
+              var nombre = document.getElementById('nombre').value;
+              var correo = document.getElementById('correo').value;
+              var contrasena = document.getElementById('contrasena').value;
+              var confirmarContrasena = document.getElementById('confirmarContrasena').value;
+              var errorCorreo = document.getElementById('errorCorreo');
+              var fortalezaContrasena = document.getElementById('fortalezaContrasena');
+              var errorConfirmarContrasena = document.getElementById('errorConfirmarContrasena');
+  
+              // Validar formato de correo electrónico
+              var correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!correoRegex.test(correo)) {
+                  errorCorreo.textContent = "Formato de correo mal puesto";
+                  return false;
+              } else {
+                  errorCorreo.textContent = "";
+              }
+  
+              // Validar fortaleza de la contraseña con una expresión regular (mínimo 8 caracteres, al menos una letra y un número)
+              var contrasenaRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+              if (!contrasenaRegex.test(contrasena)) {
+                  fortalezaContrasena.textContent = "La contraseña debe tener al 8 caracteres, incluyendo una letra y un número.";
+                  return false;
+              } else {
+                  fortalezaContrasena.textContent = "";
+              }
+  
+              // Validar que las contraseñas coincidan
+              if (contrasena !== confirmarContrasena) {
+                  errorConfirmarContrasena.textContent = "Las contraseñas no coinciden.";
+                  alert("Error: Las contraseñas no coinciden :()");
+                  return false;
+              } else {
+                  errorConfirmarContrasena.textContent = "";
+              }
+  
+              // Simulación de envío a una API ficticia
+              alert("Registro exitoso:\nNombre: " + nombre + "\nCorreo: " + correo);
+          }
+      </script>
+  
 
-      <label>Correo:</label>
-      <input type="email" id="correo">
-
-      <label >Contraseña:</label>
-      <input type="password" id="con">
-
-      <label >Confirma la contraseña:</label>
-      <input type="password2" id="con2">
-
-      <button onclick="registro()">Registrarse</button>
-    </form>
-    <script>
-      function registro(){
-        
-      }
-    </script>
 </body>
 </html>
