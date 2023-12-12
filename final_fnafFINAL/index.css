@@ -42,7 +42,7 @@ body{
     transition: ease-in-out 0.5s;
 }
 
-/*Menu Principal*/
+/*Menu Principal*/             
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;600&display=swap');
 #titulo{
     font-family: 'Roboto Mono', monospace;

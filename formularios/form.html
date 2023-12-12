@@ -37,7 +37,7 @@
     button {
       background-color: #ff4081; /* Rosa más intenso */
       color: #fff;
-      padding: 10px 20px;
+      padding: 10px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
@@ -213,7 +213,6 @@
   
           <button onclick="validarFormulario()">Registrar</button>
       </form>
-  
       <script>
           function validarFormulario() {
               var nombre = document.getElementById('nombre').value;
@@ -229,17 +228,12 @@
               if (!correoRegex.test(correo)) {
                   errorCorreo.textContent = "Formato de correo mal puesto";
                   return false;
-              } else {
-                  errorCorreo.textContent = "";
               }
   
-              // Validar fortaleza de la contraseña con una expresión regular (mínimo 8 caracteres, al menos una letra y un número)
-              var contrasenaRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-              if (!contrasenaRegex.test(contrasena)) {
+              var excep = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+              if (!excep.test(contrasena)) {
                   fortalezaContrasena.textContent = "La contraseña debe tener al 8 caracteres, incluyendo una letra y un número.";
                   return false;
-              } else {
-                  fortalezaContrasena.textContent = "";
               }
   
               // Validar que las contraseñas coincidan
@@ -247,9 +241,7 @@
                   errorConfirmarContrasena.textContent = "Las contraseñas no coinciden.";
                   alert("Error: Las contraseñas no coinciden");
                   return false;
-              } else {
-                  errorConfirmarContrasena.textContent = "";
-              }
+              } 
   
               // Simulación de envío a una API ficticia
               alert("Registro exitoso:\nNombre: " + nombre + "\nCorreo: " + correo);
