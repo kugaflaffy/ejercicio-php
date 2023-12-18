@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio 2</title>
+    <link rel="stylesheet" href="ejercicio2.css">
+</head>
+<body>
+    <h1>Pulsa una tecla</h1>
+
+<div id="miDiv"></div>
+
+<script>
+// Obtener referencia al div
+    var miDiv = document.getElementById('miDiv');
+
+// Agregar un event listener para el evento keypress
+    document.addEventListener('keypress', function(event) {
+// Obtener el carácter pulsado
+        var caracter = String.fromCharCode(event.charCode);
+
+    // Mostrar el carácter dentro del div
+        miDiv.textContent = caracter;
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tema 9</title>
+    <link rel="stylesheet" href="tema9.css">
+</head>
+<body>
+    <!--ejercicio1-->
+        <div id="contenedor">
+        <div id="div1">Posición del Ratón: (0,0)</div>
+        <div id="div2">Botón del Ratón: </div>
+        </div>
+        
+        <script>
+            var div1 = document.getElementById('div1');
+            var div2 = document.getElementById('div2');
+            
+            function actualizarPosicionYBoton(event) {
+                var posX = event.clientX;
+                var posY = event.clientY;
+            
+            // Mostrar la posición en el primer div
+                div1.textContent = 'Posición del Ratón: (' + posX + ',' + posY + ')';
+            
+            // Mostrar el botón en el segundo div
+                if(event.type === 'mousedown'){
+                var boton;
+                    switch (event.button) {
+                        case 0:
+                            boton = 'Izquierdo';
+                            break;
+                        case 1:
+                            boton = 'Central';
+                            break;
+                        case 2:
+                            boton = 'Derecho';
+                            break;
+                        default:
+                            boton = 'Desconocido';
+                    }
+                    div2.textContent = 'Botón del Ratón: ' + boton;
+                } 
+            }
+            
+            
+            function prevenirMenuContextual(event) {
+            // Prevenir el menú contextual al hacer clic derecho
+                event.preventDefault();
+            }
+            
+            document.addEventListener('mousemove', actualizarPosicionYBoton);
+            document.addEventListener('mousedown', actualizarPosicionYBoton);
+            document.addEventListener('contextmenu', prevenirMenuContextual);
+        </script>
+</body>
+</html>
