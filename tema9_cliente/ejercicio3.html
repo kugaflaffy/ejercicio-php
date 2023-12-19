@@ -7,41 +7,41 @@
     <link rel="stylesheet" href="ejecicio3.css">
 </head>
 <body>
-    <h1>Usa los cursores</h1>
+    <h1>Cursores</h1>
 
 <div id="miDiv"></div>
 
 <script>
-var miDiv = document.getElementById('miDiv');
-var movimiento = 20;
+    var miDiv = document.getElementById('miDiv');
+    var movimiento = 20;
 
-document.addEventListener('keydown', function(event) {
-var rect = miDiv.getBoundingClientRect();
-var limiteX = window.innerWidth - rect.width;
-var limiteY = window.innerHeight - rect.height;
+    document.addEventListener('keydown', function(event) {
+        var rect = miDiv.getBoundingClientRect();
+        var limiteX = window.innerWidth - rect.width;
+        var limiteY = window.innerHeight - rect.height;
 
-// Determinar la tecla presionada
-switch (event.key) {
-case 'ArrowUp':
-case 'w':
-miDiv.style.top = Math.max(rect.top - movimiento, 0) + 'px';
-break;
-case 'ArrowDown':
-case 's':
-miDiv.style.top = Math.min(rect.top + movimiento, limiteY) + 'px';
-break;
-case 'ArrowLeft':
-case 'a':
-miDiv.style.left = Math.max(rect.left - movimiento, 0) + 'px';
-break;
-case 'ArrowRight':
-case 'd':
-miDiv.style.left = Math.min(rect.left + movimiento, limiteX) + 'px';
-break;
-default:
-return;
-}
-});
+        // Determinar la tecla presionada
+        switch (event.key) {
+            case 'ArrowUp':
+            case 'w':
+                miDiv.style.top = Math.max(rect.top - movimiento, 0) + 'px';
+                break;
+            case 'ArrowDown':
+            case 's':
+                miDiv.style.top = Math.min(rect.top + movimiento, limiteY) + 'px';
+                break;
+            case 'ArrowLeft':
+            case 'a':
+                miDiv.style.left = Math.max(rect.left - movimiento, 0) + 'px';
+                break;
+            case 'ArrowRight':
+            case 'd':
+                miDiv.style.left = Math.min(rect.left + movimiento, limiteX) + 'px';
+                break;
+            default:
+        return;
+        }
+    });
 </script>
 
 </body>

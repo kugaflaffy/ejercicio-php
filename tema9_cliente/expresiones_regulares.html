@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expresiones</title>
+</head>
+<body>
+    <!--1.que validan las siguientes expresiones:
+    a) valida cadenas que empiezan con la h siguiendo la o y la a (ha, hoa)
+    b) valida solo caracteres que esten en mayuscula entre los rangos que especifica
+    c) valida cadenas de cinco digitos del 0 al 9 (12345)
+    d) valida cadenas que empiezan con un digito entre 0-4 seguido de otro entre 0-0 seguido de otro entre 0-2 y al final uno entre 0-9
+    e) valida cadenas que empiezan en un digito entre 0-4 seguido de otro entre 0-9 o con el 5 seguido de un digito entre0-2 y seguido entre 0-9(50987)
+    f) valida cadenas que empiezan con uno o mas caracteres seguidps de una letra minuscula, si tienen una letra mayuscula, si tienen digitos (al menos uno), si tienen en total entre 8-12 caracteres en mayusculas o minusculas
+    -->
+
+    <!--2.que validan las siguientes expresiones:
+    a) Valida que la cadena tenga 6 digitos al final.
+    b) Valida que la cadena tenga solo letras minúscula, números de (0-9) y que la cadena sea de de longitud 1 o más.
+    c) valida que la cadena comience con "95" seguido de un dígito seguidos de un espacio seguidos de 6 dígitos al final
+    d) Valida que la cadena contenga dos bloques de dos dígitos seguidos de un espacio.
+    e) Es lo mismo que el D, pero añadiendo que sea seguidos de exactamente 2 dígitos al final.
+    f) Es lo mismo que el C pero en vez de 6 dígitos al final son seguidos de dos bloques de dos dígitos seguidos de un espacio, y finalmente 2 dígitos al final.
+    g) Valida que la cadena contenga dos bloques de tres dígitos seguidos de un espacio.
+    h) Lo mismo que el C, luego contenga 0 o mas espacios, seguido de dos bloques de tres dígitos seguidos de un espacio
+    i) Es lo mismo que el C, dando la opción también de dos bloques de dos dígitos seguidos de un espacio y 2 dígitos al final.
+    j) Similar a la expresión (i), pero añade una opción adicional: dos bloques de tres dígitos seguidos de un espacio al final
+    -->
+
+    <!--ejercicio 3-->
+    <form>
+        <label>DNI:</label>
+        <input type="text" id="dni">
+        <button type="button" onclick="validar()">Validar</button>
+      </form>
+      
+      <script>
+      function validar() {
+        const dni = document.getElementById('dni');
+        const valor = dni.value.trim().toUpperCase(); // Convertir a mayúsculas y quitar espacios
+      
+        // Expresión regular para validar un DNI español
+        const patron = /^\d{8}[A-Z]$/;
+      
+        // Comprobación con la expresión regular
+        if (patron.test(valor)) {
+          alert(`${valor} es válido.`);
+        } else {
+          alert(`${valor} no es válido.`);
+        }
+      }
+      </script>
+
+      <!--4.expresion para validad un email:
+        ^[^@\s]+@[^@\s]+\.[^@\s]+$-->
+
+    <!--5.indica que usar para validar:
+        a)^[a-zA-Z][a-zA-Z0-9_-]{0,15}$
+        b)^(?=.*[A-Z])[a-zA-Z0-9 !@#$%^&*()-=_+]{8,18}$
+        c)^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$
+        d)^(https?://)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,3})+(\.[a-zA-Z]{2,3})*$
+        e)^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){2}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
+        f)^<([a-zA-Z]+)(\s[a-zA-Z]+=\"[^\"]*\")*\s*/?>$
+    -->
+</body>
+</html>
