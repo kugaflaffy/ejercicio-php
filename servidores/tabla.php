@@ -1,4 +1,39 @@
 <?php
+        session_start();
+ 
+        // Validar la autenticación del usuario
+        if (isset($_POST['login']) && isset($_POST['password'])) {
+            $usuario = $_POST['login'];
+            $password = $_POST['password'];
+            //pasamos la función que hicimos abajo y creamos $rol
+            if (validar($usuario, $password)) {
+                $_SESSION["usuario"] = $usuario;
+                // Establecer una cookie de sesión con el nombre del usuario
+                setcookie('usuario', $usuario, time() + 3600, '/');
+                
+                echo 'Bienvenido ' . htmlspecialchars($usuario) . '!';
+                
+            } else {
+                echo 'Usuario o contraseña incorrectos';
+                header('Location: login.php');
+                exit();
+            }
+
+        }
+
+        // Función para validar el usuario y la contraseña poniendo los dos usuarios
+        function validar($usuario, $password) {
+            // Comprueba que lo que introducimos es correcto
+            if (($usuario == 'admin' && $password == '1234') || ($usuario == 'cliente1' && $password == 'miau')) {
+                return true;
+            }else {
+                return false;
+            }
+           
+        }
+        if (isset($_SESSION["usuario"])) { 
+    ?>
+<?php
 include 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -164,27 +199,46 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <tbody>
         <?php foreach ($usuarios as $usuario){ ?>
             <tr>
-                <td><?php echo $usuario['nombre']; ?></td>
-                <td><?php echo $usuario['animal']; ?></td>
-                <td><?php echo $usuario['hobby']; ?></td>
-                <td><?php echo $usuario['nacionalidad']; ?></td>
-                <td><?php echo $usuario['fecha']; ?></td>
-                <td>
+            <td>
+                <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>" />
+            </td>
+            <td>
+                <input type="text" name="animal" value="<?php echo $usuario['animal']; ?>" />
+            </td>
+            <td>
+                <input type="text" name="hobby" value="<?php echo $usuario['hobby']; ?>" />
+            </td>
+            <td>
+                <input type="text" name="nacionalidad" value="<?php echo $usuario['nacionalidad']; ?>" />
+            </td>
+            <td>
+                <input type="date" name="fecha" value="<?php echo $usuario['fecha']; ?>" />
+            </td>
+            <td>
                     <!-- Agregar botón Eliminar -->
-                    <form method="post" action="">
+                    <form method="post" action="tabla.php">
                         <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
                         <input type="submit" name="delete_user" value="Eliminar">
                     </form>
 
                     <!-- Formulario para editar -->
-                    <form method="post" action="">
+                    <form method="post" action="tabla.php">
                         <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
                         <button type="submit" name="edit_user">Editar</button>
                     </form>
                 </td>
             </tr>
-        <?php }?>
+        
+        <?php }}
+        else{
+            header('Location: login.php'); //y volvemos al login
+         }
+         ?>
+    
     </tbody>
 </table>
+<form action="cerrar.php" method="post">
+        <input type="submit" name="cerrar_sesion" value="log out">
+    </form>
 </body>
 </html>

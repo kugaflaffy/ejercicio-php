@@ -22,11 +22,13 @@
     <br />
     <br />
     <div class="card">
-      <label>Nombre</label>
-      <input id="nombre" name="nombre" type="text" value="">
-      <label>Contraseña</label>
-      <input id="pass" name="pass" type="password" value="">
-      <input type="button" class="btn" value="Entrar">
+      <form action="tabla.php" method="POST">
+        <label>Nombre</label>
+        <input id="nombre" name="login" type="text" value="">
+        <label>Contraseña</label>
+        <input id="pass" name="password" type="password" value="">
+        <input type="submit" class="btn" value="Entrar">
+      </form>
     </div>
   </div>
 </body>

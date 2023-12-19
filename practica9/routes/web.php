@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/VistaParaAjax', function () {
-    return view('ejercicioPrueba');
+    return view('prueba');
     });
     
     Route::get('/DameAnimales', [AnimalesTakeliController::class,'getanimales']);
