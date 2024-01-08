@@ -1,7 +1,7 @@
 @import
   url('https://fonts.googleapis.com/css?family=Bree+Serif|Quicksand');
 body{
-  background-color:#f0ccf0;
+  background: url('https://wallpapercave.com/wp/wp11995517.jpg') no-repeat center center fixed;
   font-family: 'Bree Serif', serif;
 }
 .container {
@@ -61,7 +61,7 @@ input, textarea {
     width: 90%;
     border: 0;
     border-radius: 4px;
-    background-color: #ffeafe;
+    background-color: #ffc8e7;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     color: #2C3E50;
     font-size: 20px;
@@ -76,7 +76,7 @@ input, textarea {
 }
 
 .btn{
-  background-color:#e987d8;
+  background-color:#e44d92;
   padding: 10px;
   margin: 20px;
   position: relative;

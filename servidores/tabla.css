@@ -1,0 +1,99 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5cddf; /* Fondo rosa claro */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+    #uno {
+        padding: 20px;
+        margin: 20px auto; /* Cambié la declaración de margin aquí */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+    }
+    #dos {
+        padding: 20px;
+        margin: 20px auto; /* Cambié la declaración de margin aquí */
+        max-width: 400px;
+    }
+    
+
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+h2 {
+    color: #e44d92; /* Rosa oscuro */
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #e44d92; /* Rosa oscuro */
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9eaf1; /* Fondo rosa claro en filas pares */
+}
+
+table{
+    max-width: 700px;
+    margin-left: 400px;
+}
+img{
+    height: 120px;
+    width: 90px;
+    margin-left: 200px;
+}
+
+a {
+    color: #e44d92; /* Rosa oscuro */
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input[type="submit"] {
+    background-color: #e44d92; /* Rosa oscuro */
+    color: white;
+    padding: 8px 12px; /* Tamaño reducido */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #c6407a; /* Rosa medio en hover */
+}

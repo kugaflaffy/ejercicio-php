@@ -1,0 +1,51 @@
+body {
+    background-color: #f5cddf; /* Rosa claro */
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h2 {
+    color: #ed449e; /* Rosa oscuro */
+    text-align: center;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    color: #880e4f; /* Rosa oscuro */
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #ec98c5; /* Rosa oscuro */
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #ad1457; /* Rosa más oscuro */
+}
+
+a {
+    display: block;
+    margin-top: 10px;
+    color: #e55ea6; /* Rosa oscuro */
+    text-decoration: none;
+}

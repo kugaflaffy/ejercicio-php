@@ -29,7 +29,6 @@
             }else {
                 return false;
             }
-           
         }
         if (isset($_SESSION["usuario"])) { 
     ?>
@@ -37,60 +36,8 @@
 include 'config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Procesar el formulario de edición
-    if (isset($_POST['edit_user'])) {
-        // Verificar que se han enviado todos los datos necesarios para la edición
-        if (
-            isset($_POST['id']) &&
-            isset($_POST['nombre']) &&
-            isset($_POST['animal']) &&
-            isset($_POST['hobby']) &&
-            isset($_POST['nacionalidad']) &&
-            isset($_POST['fecha']) &&
-            isset($_POST['nombre_original']) &&
-            isset($_POST['animal_original']) &&
-            isset($_POST['hobby_original']) &&
-            isset($_POST['nacionalidad_original']) &&
-            isset($_POST['fecha_original'])
-        ) {
-            // Obtener los datos del formulario
-            $id = $_POST['id'];
-            $nombre_original = $_POST['nombre_original'];
-            $animal_original = $_POST['animal_original'];
-            $hobby_original = $_POST['hobby_original'];
-            $nacionalidad_original = $_POST['nacionalidad_original'];
-            $fecha_original = $_POST['fecha_original'];
-
-            // Comparar valores originales con nuevos y decidir si hacer la actualización
-            if (
-                $_POST['nombre'] !== $nombre_original ||
-                $_POST['animal'] !== $animal_original ||
-                $_POST['hobby'] !== $hobby_original ||
-                $_POST['nacionalidad'] !== $nacionalidad_original ||
-                date('Y-m-d', strtotime($_POST['fecha'])) !== $fecha_original
-            ) {
-                // Preparar la consulta de actualización
-                $stmt = $pdo->prepare('UPDATE sanrio2 SET nombre = :nombre, animal = :animal, hobby = :hobby, nacionalidad = :nacionalidad, fecha = :fecha WHERE id = :id');
-                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-                $stmt->bindParam(':nombre', $_POST['nombre'], PDO::PARAM_STR);
-                $stmt->bindParam(':animal', $_POST['animal'], PDO::PARAM_STR);
-                $stmt->bindParam(':hobby', $_POST['hobby'], PDO::PARAM_STR);
-                $stmt->bindParam(':nacionalidad', $_POST['nacionalidad'], PDO::PARAM_STR);
-
-                $fechaFormateada = date('Y-m-d', strtotime($_POST['fecha']));
-                $stmt->bindParam(':fecha', $fechaFormateada, PDO::PARAM_STR);
-
-                // Ejecutar la consulta de actualización
-                if ($stmt->execute()) {
-                    // Redirigir a la misma página después de la actualización
-                    header('Location: tabla.php');
-                    exit;
-                } else {
-                    echo "Error al actualizar el usuario.";
-                }
-            }
-        }
-    } elseif (isset($_POST['delete_user'])) {
+    // Procesar el formulario de borrar
+    if (isset($_POST['delete_user'])) {
         // Verificar si se ha enviado el formulario de eliminación
         if (isset($_POST['id']) && is_numeric($_POST['id'])) {
             $id = $_POST['id'];
@@ -163,28 +110,30 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="tabla.css">
 </head>
 <body>
+<div id ="uno">
+   <form method="post" action="">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" required>
+        <br>
+        <label for="animal">Animal:</label>
+        <input type="text" name="animal" required>
+        <br>
+        <label for="hobby">Hobby:</label>
+        <input type="text" name="hobby" required>
+        <br>
+        <label for="nacionalidad">Nacionalidad:</label>
+        <input type="text" name="nacionalidad" required>
+        <br>
+        <label for="fecha">Fecha:</label>
+        <input type="date" name="fecha" required>
+        <br>
+        <input type="submit" name="guardar" value="Guardar">
+    </form> 
+</div>
 
-<form method="post" action="">
-    <label for="nombre">Nombre:</label>
-    <input type="text" name="nombre" required>
-    <br>
-    <label for="animal">Animal:</label>
-    <input type="text" name="animal" required>
-    <br>
-    <label for="hobby">Hobby:</label>
-    <input type="text" name="hobby" required>
-    <br>
-    <label for="nacionalidad">Nacionalidad:</label>
-    <input type="text" name="nacionalidad" required>
-    <br>
-    <label for="fecha">Fecha:</label>
-    <input type="date" name="fecha" required>
-    <br>
-    <input type="submit" name="guardar" value="Guardar">
-</form>
 
+<img src="https://i.pinimg.com/originals/c4/8a/86/c48a8637251050cc9558f6c414dc9041.png" alt="Imagen">
 <h2>Usuarios</h2>
-
 <table>
     <thead>
         <tr>
@@ -198,47 +147,48 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </thead>
     <tbody>
         <?php foreach ($usuarios as $usuario){ ?>
-            <tr>
+        <tr>
             <td>
-                <input type="text" name="nombre" value="<?php echo $usuario['nombre']; ?>" />
+                <p><?php echo $usuario['nombre']; ?></p>
             </td>
             <td>
-                <input type="text" name="animal" value="<?php echo $usuario['animal']; ?>" />
+                <p><?php echo $usuario['animal']; ?></p>
             </td>
             <td>
-                <input type="text" name="hobby" value="<?php echo $usuario['hobby']; ?>" />
+                <p><?php echo $usuario['hobby']; ?></p>
             </td>
             <td>
-                <input type="text" name="nacionalidad" value="<?php echo $usuario['nacionalidad']; ?>" />
+                <p><?php echo $usuario['nacionalidad']; ?></p>
             </td>
             <td>
-                <input type="date" name="fecha" value="<?php echo $usuario['fecha']; ?>" />
+                <p><?php echo $usuario['fecha']; ?></p>
             </td>
             <td>
                     <!-- Agregar botón Eliminar -->
                     <form method="post" action="tabla.php">
                         <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
                         <input type="submit" name="delete_user" value="Eliminar">
-                    </form>
+                    </form> 
 
-                    <!-- Formulario para editar -->
-                    <form method="post" action="tabla.php">
-                        <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
-                        <button type="submit" name="edit_user">Editar</button>
-                    </form>
+                    <!--para editar, sirve para coger el id que selecionemos y poder editarlo -->
+                    <a href="update.php?id=<?php echo $usuario['id']; ?>">Editar</a>
+
                 </td>
-            </tr>
+        </tr>
         
         <?php }}
         else{
             header('Location: login.php'); //y volvemos al login
-         }
-         ?>
+        }
+        ?>
     
     </tbody>
 </table>
-<form action="cerrar.php" method="post">
+<div id="dos">
+    <form action="cerrar.php" method="post">
         <input type="submit" name="cerrar_sesion" value="log out">
     </form>
+</div>
+    
 </body>
 </html>
