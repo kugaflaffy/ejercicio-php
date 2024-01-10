@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mvc</title>
+    <link rel="stylesheet" href="mvc.css">
+</head>
+<body>
+    <div id="app">
+        <h1>To-Do List :D</h1>
+        <form id="taskForm">
+            <input type="text" id="taskInput">
+            <button type="submit">Añadir</button>
+        </form>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        //almacena y maneja los datos
+        class Modelo {
+            //array vacio para almacenar las tareas
+            constructor() {
+                this.tasks = [];
+            }
+            //añade la tarea al array y se añade al final con el push
+            addTask(task) {
+                this.tasks.push(task);
+            }
+            //el splice se usa para modificar contenido de un array eliminando o reemplazando
+            removeTask(index) {
+                this.tasks.splice(index, 1); //indica que se eliminará un solo elemento a partir de la posición index
+            }
+        }
+        
+        //lo que se ve
+        class Vista {
+            // inicialización en el constructor se utiliza para obtener y almacenar referencias a elementos específicos del DOM
+            constructor() {
+                this.taskForm = document.getElementById('taskForm');
+                this.taskInput = document.getElementById('taskInput');
+                this.taskList = document.getElementById('taskList');
+            }
+
+            updateView(tasks) {
+                this.taskList.innerHTML = ''; //borra contenido actual
+                tasks.forEach((task, index) => {//itera sobre las tareas
+                    const listItem = document.createElement('li'); //por cada tarea se crea un li
+                    listItem.textContent = task; //se actualiza a lo nuevo
+                    // Agregar botón de eliminación
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Eliminar';
+                    listItem.addEventListener('click', () => { //al hacer clic se quita la tarea
+                        controller.removeTask(index);
+                    });
+
+                     // Añadir elementos al DOM
+                     listItem.appendChild(deleteButton);
+                    this.taskList.appendChild(listItem); //se añade el nuevo elemento en la lista
+                });
+            }
+        }
+        //responde a las acciones
+        class Controlador {
+            constructor(model, view) {
+                this.model = model;
+                this.view = view;
+
+                // Agregar evento al formulario
+                this.view.taskForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    this.addTask();
+                });
+            }
+
+            addTask() {
+                const task = this.view.taskInput.value;
+                if (task.trim() !== '') {
+                    this.model.addTask(task);
+                    this.view.updateView(this.model.tasks);
+                    this.view.taskInput.value = '';
+                }
+            }
+
+            removeTask(index) {
+                this.model.removeTask(index);
+                this.view.updateView(this.model.tasks);
+            } 
+        }
+
+         // Instanciar MVC
+        const model = new Modelo();
+        const view = new Vista();
+        const controller = new Controlador(model, view);
+
+        // Inicializar vista
+        view.updateView(model.tasks);
+    </script>
+</body>
+</html>
