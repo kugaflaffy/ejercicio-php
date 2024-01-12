@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botoncitos</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="cajita"></div>
+
+    <label for="info">introduce texto y dale a los botones:</label>
+    <input type="text" id="info"><br>
+    <button id="bth1">añadir h1</button>
+    <button id="bth1cambiar">cambiar h1</button>
+    <button id="bth2">añadir h2</button>
+    <button id="bth3">añadir h3</button>
+    <button id="btp">añadir párrafo</button>
+
+    <script>
+        $(document).ready(function(){
+            $("#bth1").click(function(){
+                var texto = $("#info").val();
+                if ($("#cajita h1").length === 0) {
+                    $("#cajita").html("<h1>" + texto + "</h1>");
+                    $("#info").val("");
+                    $("#bth1").hide();
+                }
+            });
+
+            $("#bth1cambiar").click(function(){
+                var nuevoTexto = $("#info").val();
+                var h1Existente = $("#cajita h1");
+                if (h1Existente.length > 0) {
+                    h1Existente.text(nuevoTexto);
+                    $("#info").val("");
+                }
+            });
+
+            $("#bth2").click(function(){
+                var textoh2 = $("#info").val();
+                $("#cajita").append("<h2>" + textoh2 + "</h2>");
+                $("#info").val("");
+            });
+
+            $("#bth3").click(function(){
+                var textoh3 = $("#info").val();
+                $("#cajita").append("<h3>" + textoh3 + "</h3>");
+                $("#info").val("");
+            });
+
+            $("#btp").click(function(){
+                var textop = $("#info").val();
+                $("#cajita").append("<p>" + textop + "</p>");
+                $("#info").val("");
+            });
+        });
+    </script>
+</body>
+</html>
