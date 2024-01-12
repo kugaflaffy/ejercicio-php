@@ -16,16 +16,19 @@
     <button id="bth2">añadir h2</button>
     <button id="bth3">añadir h3</button>
     <button id="btp">añadir párrafo</button>
+    <button id="btfoto">añadir foto con url</button>
+    <button id="btfuente">cambiar fuente</button>
+    <button id="btcolor">cambiar color</button>
+    <button id="btcolorTexto">cambiar color del texto</button>
+    <button id="btdeshacer">deshacer último elemento</button>
 
     <script>
         $(document).ready(function(){
             $("#bth1").click(function(){
                 var texto = $("#info").val();
-                if ($("#cajita h1").length === 0) {
-                    $("#cajita").html("<h1>" + texto + "</h1>");
-                    $("#info").val("");
-                    $("#bth1").hide();
-                }
+                $("#cajita").html("<h1>" + texto + "</h1>");
+                $("#info").val("");
+                $("#bth1").hide();
             });
 
             $("#bth1cambiar").click(function(){
@@ -52,6 +55,36 @@
             $("#btp").click(function(){
                 var textop = $("#info").val();
                 $("#cajita").append("<p>" + textop + "</p>");
+                $("#info").val("");
+            });
+
+            $("#btfoto").click(function(){
+                var foto = $("#info").val();
+                $("#cajita").append("<img src='" + foto + "' alt='Imagen'>");
+                $("#info").val("");
+            });
+
+            $("#btfuente").click(function(){
+                var fuente = $("#info").val();
+                $("#cajita").css("font-family", fuente);
+                $("#info").val("");
+            });
+
+            $("#btcolor").click(function(){
+                var color = $("#info").val();
+                $("#cajita").css("background-color", color);
+                $("#info").val("");
+            });
+
+            $("#btcolorTexto").click(function(){
+                var colorT = $("#info").val();
+                $("#cajita").css("color", colorT);
+                $("#info").val("");
+            });
+
+            $("#btdeshacer").click(function(){
+                var deshacer = $("#info").val();
+                $("#cajita").css("color", deshacer);
                 $("#info").val("");
             });
         });
