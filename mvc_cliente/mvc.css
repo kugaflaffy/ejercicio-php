@@ -1,44 +1,54 @@
 body {
-    font-family: 'Arial', sans-serif;
+    background-color: #FFC0CB; /* Rosa claro */
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
 }
 
 #app {
     text-align: center;
-    width: 300px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif; /* Cambia la fuente */
 }
 
 h1 {
-    color: #333;
+    color: #333; /* Color de texto negro */
 }
 
 form {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
-input {
-    padding: 5px;
+input[type="text"] {
+    padding: 10px;
+    margin-right: 5px;
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 5px;
+    font-family: 'Arial', sans-serif; /* Cambia la fuente */
 }
 
 button {
-    padding: 5px 10px;
+    padding: 10px;
+    margin-left: 5px; /* Agrega espacio entre la tarea y el botón de eliminar */
+    border: none;
+    border-radius: 5px;
+    background-color: #FF69B4; /* Rosa más intenso */
+    color: white;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif; /* Cambia la fuente */
 }
 
 ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
 li {
-    background-color: #fff;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+    margin-bottom: 10px;
 }
