@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Botoncitos</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8; /* Fondo gris claro */
+            color: #333; /* Texto negro */
+        }
+
+        button {
+            background-color: #e44d8e; /* Rosa */
+            color: #fff; /* Texto blanco */
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #c7265a; /* Rosa más oscuro al pasar el mouse */
+        }
+
+        #cajita {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #e44d8e; /* Borde rosa */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+    </style>
 </head>
 <body>
     <div id="cajita"></div>
@@ -21,6 +51,9 @@
     <button id="btcolor">cambiar color</button>
     <button id="btcolorTexto">cambiar color del texto</button>
     <button id="btdeshacer">deshacer último elemento</button>
+    <button id="bteliminar">eliminar articulo</button>
+    <button id="btoscuro">modo oscuro</button>
+    <button id="btfade">usar fade en imagenes</button>
 
     <script>
         $(document).ready(function(){
@@ -83,10 +116,39 @@
             });
 
             $("#btdeshacer").click(function(){
-                var deshacer = $("#info").val();
-                $("#cajita").css("color", deshacer);
+                $("#cajita :last").remove();
                 $("#info").val("");
             });
+
+            $("#bteliminar").click(function(){
+                $("#cajita").remove();
+                $("#info").val("");
+            });
+
+            var modoOscuro = false;
+            $("#btoscuro").click(function () {
+                modoOscuro = !modoOscuro; // Alternar el estado
+                if (modoOscuro) {
+                    // Modo oscuro
+                    $("body").css({
+                        "background-color": "black",
+                        "color": "white",
+                        "transition": "background-color 0.5s, color 0.5s"
+                    });
+                } else {
+                    // Modo claro
+                    $("body").css({
+                        "background-color": "white",
+                        "color": "black",
+                        "transition": "background-color 0.5s, color 0.5s"
+                    });
+                }
+            });
+
+            $("#btfade").click(function(){
+                $("#cajita img").fadeOut(500);
+            });
+
         });
     </script>
 </body>

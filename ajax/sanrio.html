@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sanrio.css">
     <title>sanrio</title>
 </head>
 <body>
-    
+    <div id="enlace">
+        <p><a id="enlace1" href="#" onclick="cargarDatos(1)">My Melody</a></p>
+        <p><a id="enlace2" href="#" onclick="cargarDatos(2)">Kuromi</a></p>
+        <p><a id="enlace3" href="#" onclick="cargarDatos(3)">Hello Kitty</a></p>
+        <p><a id="enlace4" href="#" onclick="cargarDatos(4)">Cinnamoroll</a></p>
+        <p><a id="enlace5" href="#" onclick="cargarDatos(5)">Keroppi</a></p>
+    </div>
+
+    <div id="descripcion"></div>
+
+    <script>
+        function cargarDatos(codigo) {
+            var conexion1 = new XMLHttpRequest();
+
+            conexion1.onreadystatechange = function() {
+                if (conexion1.readyState == 4) {
+                    if (conexion1.status == 200) {
+                        document.getElementById('descripcion').innerHTML = conexion1.responseText;
+                    } else {
+                        document.getElementById('descripcion').innerHTML = 'Error - Código de estado: ' + conexion1.status;
+                    }
+                }
+            };
+
+            conexion1.open("GET", "datos.php?cod=" + codigo, true);
+            conexion1.send();
+        }
+    </script>
 </body>
 </html>
