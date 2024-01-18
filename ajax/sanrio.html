@@ -8,11 +8,11 @@
 </head>
 <body>
     <div id="enlace">
-        <p><a id="enlace1" href="#" onclick="cargarDatos(1)">My Melody</a></p>
-        <p><a id="enlace2" href="#" onclick="cargarDatos(2)">Kuromi</a></p>
-        <p><a id="enlace3" href="#" onclick="cargarDatos(3)">Hello Kitty</a></p>
-        <p><a id="enlace4" href="#" onclick="cargarDatos(4)">Cinnamoroll</a></p>
-        <p><a id="enlace5" href="#" onclick="cargarDatos(5)">Keroppi</a></p>
+        <p><a id="enlace1" onclick="cargarDatos(1)">My Melody</a></p>
+        <p><a id="enlace2" onclick="cargarDatos(2)">Kuromi</a></p>
+        <p><a id="enlace3" onclick="cargarDatos(3)">Hello Kitty</a></p>
+        <p><a id="enlace4" onclick="cargarDatos(4)">Cinnamoroll</a></p>
+        <p><a id="enlace5" onclick="cargarDatos(5)">Keroppi</a></p>
     </div>
 
     <div id="descripcion"></div>
@@ -20,11 +20,14 @@
     <script>
         function cargarDatos(codigo) {
             var conexion1 = new XMLHttpRequest();
+            document.getElementById('descripcion').innerHTML = 'Cargando...';
 
             conexion1.onreadystatechange = function() {
                 if (conexion1.readyState == 4) {
                     if (conexion1.status == 200) {
+                        setTimeout(function() {
                         document.getElementById('descripcion').innerHTML = conexion1.responseText;
+                    }, 2000);
                     } else {
                         document.getElementById('descripcion').innerHTML = 'Error - Código de estado: ' + conexion1.status;
                     }
