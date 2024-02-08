@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fce4ec; /* Cambiar el color de fondo a rosa claro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column; /* Colocar los botones en una disposición vertical */
+    align-items: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff80ab; /* Cambiar el color de fondo del botón a rosa */
+    color: #fff; /* Cambiar el color del texto a blanco */
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff4081; /* Cambiar el color de fondo del botón al pasar el mouse */
+}
+
+button:focus {
+    outline: none; /* Eliminar el contorno al enfocar el botón */
+}
