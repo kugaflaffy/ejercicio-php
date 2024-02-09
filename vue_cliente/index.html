@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue actividades</title>
-    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div id="nombrecito">
@@ -17,8 +16,55 @@
     <!--v-if-->
     <!--v-else-if-->
     <!--v-else-->
+    <div id="muchosif">
+        <p>Ingrese una temperatura entre -10 y 50:
+        <input type="number" v-model="numero" min="-11" max="50"></p>
+        <p v-if="numero<=16">hace frio</p>
+        <p v-else-if="numero<=28">hace calor</p>
+        <p v-else>te vas a morir de calor</p>
+    </div>
+        
+    <!--v-for-->
+    <div id="unfor">
+        <ul>
+          <li v-for="personajes in personajes">{{personajes}}</li>
+        </ul>
+    </div>
+
+    <!--v-on-->
+    <div id="on">
+        <button v-on:click="contadorcito = contadorcito + 1">Pulsa: {{contadorcito}}</button>
+    </div>
+
+    <div id="app">
+        <form v-on:submit.prevent="enviarFormulario">
+          <input type="text" v-model="mensaje" placeholder="Escribe tu mensaje aquí">
+          <button type="submit">Enviar</button>
+        </form>
+        <p>{{ mensajeEnviado }}</p>
+    </div>
+
+
+    <!--v-bind-->
+    <div id="vbind">
+        <ol>
+          <li v-for="actividad in actividades">
+            {{actividad}}
+          </li>
+        </ol>
+      </div>
     
-      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+      <div id="css">
+        <p>Tamaño de la fuente:
+          <input type="range" v-model="tamañoFuente" min=10 max=100>{{tamañoFuente}}
+        </p>
+        <p>Color:
+            <input type="color" v-model="colorParrafo">
+        </p>      
+        <p v-bind:style="{'font-size':tamañoFuente+'px', 'color': colorParrafo}">Párrafo de prueba</p>
+    
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="vue.js"></script>
 </body>
 </html>
