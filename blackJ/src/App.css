@@ -6,7 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: green; /* Fondo verde */
+  background-color: rgb(98, 166, 98); /* Fondo verde */
 }
 
 .App {
